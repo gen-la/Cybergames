@@ -1,4 +1,5 @@
 @page
+@using Cybergames.Models
 @model Cybergames.Pages.Admin.Games.CreateModel
 @{
     ViewData["Title"] = "Add New Game";
@@ -34,11 +35,11 @@
 
         @for (int i = 1; i <= 5; i++)
         {
-            <div class="mb-4">
-                <label asp-for="Game.@("Img" + i)" class="block text-gray-700 text-sm font-bold mb-2">Image @i URL</label>
-                <input asp-for="Game.@("Img" + i)" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
-                <span asp-validation-for="Game.@("Img" + i)" class="text-red-500 text-xs"></span>
-            </div>
+        <div class="mb-4">
+            <label asp-for="@($"Game.Img{i}")" class="block text-gray-700 text-sm font-bold mb-2">Image @i URL</label>
+            <input asp-for="@($"Game.Img{i}")" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
+            <span asp-validation-for="@($"Game.Img{i}")" class="text-red-500 text-xs"></span>
+        </div>
         }
 
         <div class="flex items-center justify-between">

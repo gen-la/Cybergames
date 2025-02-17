@@ -9,5 +9,4 @@ public class ApplicationUser :IdentityUser
     public string Adress { get; set; } = "";
     public DateTime CreatedAt { get; set; } 
     
-    
 }
