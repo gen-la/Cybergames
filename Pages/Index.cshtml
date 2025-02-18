@@ -10,9 +10,9 @@
         <div class="row justify-content-center mx-0">
             <div class="col-lg-8">
                 <h1 class="display-1">Welcome to CyberGames</h1>
-                <p class="lead mb-5">Creating exceptional web experiences that spark innovation and drive success. Let's bring your digital vision to life.</p>
-                <a href="#services" class="btn btn-primary btn-lg px-4 me-3">Discover More</a>
-                <a href="#contact" class="btn btn-outline-light btn-lg px-4">Get Started</a>
+                <p class="lead mb-5">Discover the future of gaming with our cutting-edge experience</p>
+                <a href="#" class="btn btn-primary btn-lg px-4 me-3">Explore Games</a>
+                <a href="#contact" class="btn btn-outline-light btn-lg px-4">Join now</a>
             </div>
         </div>
     </div>
@@ -123,70 +123,7 @@
             </script>
 
 <!-- slut på hero -->
-
-
-    <style>
-        .game-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 20px;
-            padding: 20px;
-        }
-
-        .game-card {
-            background-color: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            transition: transform 0.3s ease-in-out;
-        }
-
-        .game-card:hover {
-            transform: scale(1.05);
-        }
-
-        .game-card img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-        }
-
-        .game-card-body {
-            padding: 15px;
-        }
-
-        .game-card-body h2 {
-            font-size: 1.5rem;
-            margin: 10px 0;
-        }
-
-        .game-card-body p {
-            margin: 5px 0;
-            color: #555;
-        }
-
-        .game-card-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding-top: 10px;
-        }
-
-        .game-card-footer span {
-            font-weight: bold;
-            color: #333;
-        }
-
-        .game-card-footer .category {
-            background-color: #007bff;
-            color: white;
-            padding: 5px 10px;
-            border-radius: 5px;
-        }
-    </style>
-
-    <h1>Games List</h1>
-
+    <h1>Featured Games</h1>
     <div class="game-container">
         @foreach (var game in Model.Games)
         {
@@ -195,6 +132,7 @@
                 <div class="game-card-body">
                     <h2>@game.Title</h2>
                     <p>@game.Description</p>
+                    <button type="button" class="btn btn-primary">Add to cart</button>
                     <div class="game-card-footer">
                         <span>$@game.Price</span>
                         <span class="category">@game.Category</span>
