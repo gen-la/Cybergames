@@ -21,5 +21,7 @@ namespace Cybergames.Pages.Admin.Games
         {
             Games = await _context.Games.ToListAsync();
         }
+        
+        
     }
 }
