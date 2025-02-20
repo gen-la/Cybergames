@@ -1,57 +1,56 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Home page";
+ViewData["Title"] = "Home page";
 }
-<!-- hero -->
+    <!-- hero -->
 <section class="hero d-flex align-items-center bg-black">
     <canvas id="fireworksCanvas"></canvas>
     <div class="position-relative z-1 text-center text-white w-100">
         <div class="row justify-content-center mx-0">
             <div class="col-lg-8">
-                <h1 class="display-1">Welcome to CyberGames</h1>
-                <p class="lead mb-5">Discover the future of gaming with our cutting-edge experience</p>
-                <a href="#" class="btn btn-primary btn-lg px-4 me-3">Explore Games</a>
-                <a id="register" asp-area="Identity" asp-page="/Account/Register" class="btn btn-outline-light btn-lg px-4">Join now</a>
+                <h1 class="display-1 animate__animated animate__fadeInDown">Welcome to CyberGames</h1>
+                <p class="lead mb-5 animate__animated animate__fadeInUp animate__delay-1s">Discover the future of gaming with our cutting-edge experience</p>
+                <div class="animate__animated animate__fadeInUp animate__delay-2s">
+                    <a href="#" class="btn btn-primary btn-lg px-4 me-3">Explore Games</a>
+                    <a id="register" asp-area="Identity" asp-page="/Account/Register" class="btn btn-outline-light btn-lg px-4">Join now</a>
+                </div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- slut på hero -->
-<h1>Featured Games</h1>
-<div class="game-container">
-    @foreach (var game in Model.Games)
-    {
-    <div class="game-card">
-        <img src="@game.Cover" alt="@game.Title" />
-        <div class="game-card-body">
-            <h2>@game.Title</h2>
-            <p>@game.Description</p>
-            <form method="post" asp-page-handler="AddToCart">
-                <input type="hidden" name="id" value="@game.ID" />
-                <input type="hidden" name="title" value="@game.Title" />
-                <input type="hidden" name="price" value="@game.Price" />
-                <input type="number" name="quantity" value="1" min="1" class="form-control mb-2" />
-                <button type="submit" class="btn btn-primary">Add to Cart</button>
-            </form>
-            <div class="game-card-footer">
-                <span>$@game.Price</span>
-                <span class="category">@game.Category</span>
+<!-- Featured Games Section -->
+<section class="featured-games py-5 bg-light">
+    <div class="container">
+        <h1 class="text-center mb-5 animate__animated animate__fadeIn">Featured Games</h1>
+        <div class="game-container">
+            @foreach (var game in Model.Games)
+            {
+            <div class="game-card animate__animated animate__fadeInUp">
+                <img src="@game.Cover" alt="@game.Title" class="game-card-image" />
+                <div class="game-card-body">
+                    <h2 class="game-card-title">@game.Title</h2>
+                    <p class="game-card-description">@game.Description</p>
+
+                    <form method="post" asp-page-handler="AddToCart" class="game-card-form">
+                        <input type="hidden" name="id" value="@game.ID" />
+                        <input type="hidden" name="title" value="@game.Title" />
+                        <input type="hidden" name="price" value="@game.Price" />
+
+                        <div class="input-group mb-3">
+                            <input type="number" name="quantity" value="1" min="1" class="form-control" aria-label="Quantity" />
+                            <button type="submit" class="btn btn-primary">Add to Cart</button>
+                        </div>
+                    </form>
+
+                    <div class="game-card-footer">
+                        <span class="game-card-price">$@game.Price</span>
+                        <span class="category">@game.Category</span>
+                    </div>
+                </div>
             </div>
+            }
         </div>
     </div>
-    }
-</div>
-
-
-
-
-
-
-
-
-
-
- 
-  
+</section>
