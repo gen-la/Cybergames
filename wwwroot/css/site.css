@@ -3,3 +3,12 @@ html, body {
   padding: 0;
   overflow-x: hidden;
 }
+
+/* Kassa ikonen  */
+.cart-badge {
+  background-color: red !important; 
+  color: white !important; 
+  font-weight: bold;
+  padding: 2px 5px;
+  border-radius: 50%;
+}
