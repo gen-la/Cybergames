@@ -128,7 +128,7 @@ body {
 }
 
 .game-card-footer .category {
-    background-color: #1c2d63;
+    background-color: #007bff;
     color: white;
     padding: 2px 5px;
     border-radius: 5px;
@@ -166,3 +166,66 @@ body {
 .animate__delay-2s {
     animation-delay: 2s;
 }
+
+/* Neon Text Effect */
+.neon-text {
+    color: var(--white);
+    text-shadow: 0 0 10px var(--primary-color), 0 0 20px var(--primary-color), 0 0 40px var(--primary-color);
+}
+
+/* Glow Effect on Hover */
+.glow-on-hover:hover {
+    box-shadow: 0 0 15px var(--primary-color), 0 0 30px var(--primary-color);
+}
+
+/* Trending Games Scroll */
+.trending-games-scroll {
+    display: flex;
+    overflow-x: auto;
+    gap: 15px;
+    padding-bottom: 20px;
+}
+
+.trending-games-scroll::-webkit-scrollbar {
+    height: 8px;
+}
+
+.trending-games-scroll::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 10px;
+}
+
+.trending-game-card {
+    position: relative;
+    min-width: 200px;
+    height: 300px;
+    border-radius: 15px;
+    overflow: hidden;
+    transition: var(--transition);
+}
+
+.trending-game-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.trending-game-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: var(--transition);
+}
+
+.trending-game-card:hover .trending-game-overlay {
+    opacity: 1;
+}
+
