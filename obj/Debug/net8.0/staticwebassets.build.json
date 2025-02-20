@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "PnliL7wQwnhki2sll8xqpIfHStNMcKNMXmUlwiUsTp8=",
+  "Hash": "PLZwkB7yO4ejGgSEQXUuXMPAaY1Oyhyp3vYCXrSYxSg=",
   "Source": "Cybergames",
   "BasePath": "_content/Cybergames",
   "Mode": "Default",
@@ -1195,12 +1195,12 @@
       "OriginalItemSpec": "/Users/mustafaalnaser/Desktop/cybergames/Cybergames/obj/Debug/net8.0/scopedcss/projectbundle/Cybergames.bundle.scp.css"
     },
     {
-      "Identity": "/Users/mustafaalnaser/Desktop/cybergames/Cybergames/wwwroot/css/index.css",
+      "Identity": "/Users/mustafaalnaser/Desktop/cybergames/Cybergames/wwwroot/css/Index.css",
       "SourceId": "Cybergames",
       "SourceType": "Discovered",
       "ContentRoot": "/Users/mustafaalnaser/Desktop/cybergames/Cybergames/wwwroot/",
       "BasePath": "_content/Cybergames",
-      "RelativePath": "css/index.css",
+      "RelativePath": "css/Index.css",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -1211,7 +1211,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot/css/index.css"
+      "OriginalItemSpec": "wwwroot/css/Index.css"
     },
     {
       "Identity": "/Users/mustafaalnaser/Desktop/cybergames/Cybergames/wwwroot/css/site.css",
