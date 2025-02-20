@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "PLZwkB7yO4ejGgSEQXUuXMPAaY1Oyhyp3vYCXrSYxSg=",
+  "Hash": "ley8LwW6tdKKdkbjlNDX4lBp+1y41YS1g4GgLSiIEmo=",
   "Source": "Cybergames",
   "BasePath": "_content/Cybergames",
   "Mode": "Default",
@@ -1250,6 +1250,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/favicon.ico"
+    },
+    {
+      "Identity": "/Users/mustafaalnaser/Desktop/cybergames/Cybergames/wwwroot/js/heroanimation.js",
+      "SourceId": "Cybergames",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/mustafaalnaser/Desktop/cybergames/Cybergames/wwwroot/",
+      "BasePath": "_content/Cybergames",
+      "RelativePath": "js/heroanimation.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/js/heroanimation.js"
     },
     {
       "Identity": "/Users/mustafaalnaser/Desktop/cybergames/Cybergames/wwwroot/js/site.js",

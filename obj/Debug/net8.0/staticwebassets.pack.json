@@ -17,6 +17,10 @@
       "PackagePath": "staticwebassets/favicon.ico"
     },
     {
+      "Id": "/Users/mustafaalnaser/Desktop/cybergames/Cybergames/wwwroot/js/heroanimation.js",
+      "PackagePath": "staticwebassets/js/heroanimation.js"
+    },
+    {
       "Id": "/Users/mustafaalnaser/Desktop/cybergames/Cybergames/wwwroot/js/site.js",
       "PackagePath": "staticwebassets/js/site.js"
     },
