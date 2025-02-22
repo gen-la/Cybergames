@@ -361,3 +361,27 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+.vs/Cybergames/v17/.futdcache.v2
+.vs/Cybergames/v17/.futdcache.v2
+*.v2
+*.bin
+bin/Debug/net8.0/Cybergames.deps.json
+*.dll
+bin/Debug/net8.0/Cybergames.pdb
+bin/Debug/net8.0/Cybergames.staticwebassets.runtime.json
+obj/Cybergames.csproj.nuget.dgspec.json
+obj/Cybergames.csproj.nuget.g.props
+*.targets
+obj/Debug/net8.0/Cybergames.AssemblyInfo.cs
+obj/Debug/net8.0/Cybergames.AssemblyInfoInputs.cache
+*.cache
+obj/Debug/net8.0/Cybergames.csproj.FileListAbsolute.txt
+obj/Debug/net8.0/Cybergames.GeneratedMSBuildEditorConfig.editorconfig
+obj/Debug/net8.0/Cybergames.MvcApplicationPartsAssemblyInfo.cs
+obj/Debug/net8.0/Cybergames.pdb
+obj/Debug/net8.0/Cybergames.sourcelink.json
+obj/Debug/net8.0/staticwebassets.build.json
+obj/Debug/net8.0/staticwebassets.development.json
+obj/Debug/net8.0/staticwebassets.pack.json
+*.props
+obj/project.assets.json
