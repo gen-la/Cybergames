@@ -203,6 +203,10 @@ body {
     overflow: hidden;
     transition: var(--transition);
 }
+.trending-game-card h3{
+    color: white;
+    text-align: center;
+}
 
 .trending-game-card img {
     width: 100%;
