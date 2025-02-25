@@ -20,8 +20,9 @@ ViewData["Title"] = "Home page";
         </div>
     </div>
 </section>
+
 <!-- Trending Games Section -->
-<section class="trending-games py-5 ">
+<section class="trending-games py-5">
     <div class="container">
         <h1 class="text-center mb-5 neon-text">Trending Games</h1>
         <div class="trending-games-scroll">
@@ -38,7 +39,8 @@ ViewData["Title"] = "Home page";
         </div>
     </div>
 </section>
-<!-- Featured Games Section (Untouched) -->
+
+<!-- Featured Games Section -->
 <section id="featured-games" class="featured-games py-5 bg-light">
     <div class="container">
         <h1 class="text-center mb-5 neon-text">Featured Games</h1>
@@ -60,7 +62,7 @@ ViewData["Title"] = "Home page";
                         </div>
                     </form>
                     <div class="game-card-footer">
-                        <span class="game-card-price">$@game.Price</span>
+                        <span class="game-card-price">$@((int)game.Price)</span> <!-- Format Price as integer -->
                         <span class="category">@game.Category</span>
                     </div>
                 </div>

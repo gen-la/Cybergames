@@ -1,5 +1,6 @@
 @page
 @model CartModel
+@using System.Globalization
 @{
 ViewData["Title"] = "Shopping Cart";
 }
@@ -23,9 +24,9 @@ ViewData["Title"] = "Shopping Cart";
     {
     <tr>
         <td>@item.Name</td>
-        <td>@item.Price.ToString("C")</td>
+        <td>$@((int)item.Price)</td> <!-- Remove decimals -->
         <td>@item.Quantity</td>
-        <td>@((item.Price * item.Quantity).ToString("C"))</td>
+        <td>$@((int)(item.Price * item.Quantity))</td> <!-- Remove decimals -->
         <td>
             <form method="post" asp-page-handler="RemoveFromCart">
                 <input type="hidden" name="itemId" value="@item.Id" />
@@ -36,7 +37,7 @@ ViewData["Title"] = "Shopping Cart";
     }
     </tbody>
 </table>
-<h4>Total: @Model.Cart.CalculateTotal().ToString("C")</h4>
+<h4>Total: $@((int)Model.Cart.CalculateTotal())</h4> <!-- Remove decimals -->
 }
 else
 {
