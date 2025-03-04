@@ -9,29 +9,36 @@ namespace Cybergames.Pages
     public class IndexModel : PageModel
     {
         private readonly ILogger<IndexModel> _logger;
-        private readonly CartService _cartService; // Inject CartService
-        private readonly ApplicationDbContext _context; // Inject ApplicationDbContext
+        private readonly CartService _cartService;
+        private readonly ApplicationDbContext _context;
 
-        // List of games
         public List<Game> Games { get; set; } = new();
+        public int CurrentPage { get; set; } = 1;
+        public int TotalPages { get; set; }
+        private const int PageSize = 12; // Number of games per page
 
         public IndexModel(ILogger<IndexModel> logger, CartService cartService, ApplicationDbContext context)
         {
             _logger = logger;
-            _cartService = cartService; // Inject CartService
-            _context = context; // Inject ApplicationDbContext
+            _cartService = cartService;
+            _context = context;
         }
 
-        public async Task OnGetAsync()
+        public async Task OnGetAsync(int pageIndex = 1)
         {
-            // Fetch games from the database
-            Games = await _context.Games.ToListAsync();
+            CurrentPage = pageIndex;
+            int totalGames = await _context.Games.CountAsync();
+            TotalPages = (int)Math.Ceiling(totalGames / (double)PageSize);
+
+            Games = await _context.Games
+                .Skip((pageIndex - 1) * PageSize)
+                .Take(PageSize)
+                .ToListAsync();
 
             var cart = _cartService.GetCart();
             ViewData["CartItemCount"] = cart.Items.Sum(item => item.Quantity);
         }
 
-        // Handle adding a game to the cart
         public IActionResult OnPostAddToCart(int id, string title, decimal price, int quantity)
         {
             var cart = _cartService.GetCart();
@@ -44,7 +51,7 @@ namespace Cybergames.Pages
             });
             _cartService.SaveCart(cart);
 
-            return RedirectToPage(); // Refresh the page
+            return RedirectToPage(new { pageIndex = CurrentPage }); // Stay on the same page
         }
     }
 }
