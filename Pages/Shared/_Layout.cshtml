@@ -26,6 +26,34 @@
                     <li class="nav-item">
                         <a class="nav-link" asp-area="" asp-page="/Index">Home</a>
                     </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="categoriesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Categories
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-dark p-4" aria-labelledby="categoriesDropdown" style="width: 600px;">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <a class="dropdown-item" asp-page="/Category" asp-route-category="Action">Action</a>
+                                        <a class="dropdown-item" asp-page="/Category" asp-route-category="Adventure">Adventure</a>
+                                        <a class="dropdown-item" asp-page="/Category" asp-route-category="Arcade">Arcade</a>
+                                        <a class="dropdown-item" asp-page="/Category" asp-route-category="Casual">Casual</a>
+                                        <a class="dropdown-item" asp-page="/Category" asp-route-category="FPS">FPS</a>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <a class="dropdown-item" asp-page="/Category" asp-route-category="Fighting">Fighting</a>
+                                        <a class="dropdown-item" asp-page="/Category" asp-route-category="Puzzle">Puzzle</a>
+                                        <a class="dropdown-item" asp-page="/Category" asp-route-category="Platform">Platform</a>
+                                        <a class="dropdown-item" asp-page="/Category" asp-route-category="Racing">Racing</a>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <a class="dropdown-item" asp-page="/Category" asp-route-category="RPG">RPG</a>
+                                        <a class="dropdown-item" asp-page="/Category" asp-route-category="Strategy">Strategy</a>
+                                        <a class="dropdown-item" asp-page="/Category" asp-route-category="Simulation">Simulation</a>
+                                        <a class="dropdown-item" asp-page="/Category" asp-route-category="Sports">Sports</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
                     <li class="nav-item">
                         <a class="nav-link" asp-area="" asp-page="/Admin/Games/Index">Admin</a>
                     </li>
