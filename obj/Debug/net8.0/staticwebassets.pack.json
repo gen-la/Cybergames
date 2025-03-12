@@ -37,40 +37,20 @@
       "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-grid.css"
     },
     {
-      "Id": "/Users/mustafaalnaser/Desktop/cybergames/Cybergames/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.css.map",
-      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-grid.css.map"
-    },
-    {
       "Id": "/Users/mustafaalnaser/Desktop/cybergames/Cybergames/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.min.css",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-grid.min.css"
-    },
-    {
-      "Id": "/Users/mustafaalnaser/Desktop/cybergames/Cybergames/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.min.css.map",
-      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-grid.min.css.map"
     },
     {
       "Id": "/Users/mustafaalnaser/Desktop/cybergames/Cybergames/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.rtl.css",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-grid.rtl.css"
     },
     {
-      "Id": "/Users/mustafaalnaser/Desktop/cybergames/Cybergames/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.rtl.css.map",
-      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-grid.rtl.css.map"
-    },
-    {
       "Id": "/Users/mustafaalnaser/Desktop/cybergames/Cybergames/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css"
     },
     {
-      "Id": "/Users/mustafaalnaser/Desktop/cybergames/Cybergames/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css.map",
-      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css.map"
-    },
-    {
       "Id": "/Users/mustafaalnaser/Desktop/cybergames/Cybergames/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.css",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-reboot.css"
-    },
-    {
-      "Id": "/Users/mustafaalnaser/Desktop/cybergames/Cybergames/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.css.map",
-      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-reboot.css.map"
     },
     {
       "Id": "/Users/mustafaalnaser/Desktop/cybergames/Cybergames/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.min.css",
@@ -85,10 +65,6 @@
       "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-reboot.rtl.css"
     },
     {
-      "Id": "/Users/mustafaalnaser/Desktop/cybergames/Cybergames/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.rtl.css.map",
-      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-reboot.rtl.css.map"
-    },
-    {
       "Id": "/Users/mustafaalnaser/Desktop/cybergames/Cybergames/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.css",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.css"
     },
@@ -101,112 +77,56 @@
       "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-utilities.css"
     },
     {
-      "Id": "/Users/mustafaalnaser/Desktop/cybergames/Cybergames/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.css.map",
-      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-utilities.css.map"
-    },
-    {
       "Id": "/Users/mustafaalnaser/Desktop/cybergames/Cybergames/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.min.css",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-utilities.min.css"
-    },
-    {
-      "Id": "/Users/mustafaalnaser/Desktop/cybergames/Cybergames/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.min.css.map",
-      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-utilities.min.css.map"
     },
     {
       "Id": "/Users/mustafaalnaser/Desktop/cybergames/Cybergames/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.rtl.css",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-utilities.rtl.css"
     },
     {
-      "Id": "/Users/mustafaalnaser/Desktop/cybergames/Cybergames/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.rtl.css.map",
-      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-utilities.rtl.css.map"
-    },
-    {
       "Id": "/Users/mustafaalnaser/Desktop/cybergames/Cybergames/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css"
-    },
-    {
-      "Id": "/Users/mustafaalnaser/Desktop/cybergames/Cybergames/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css.map",
-      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css.map"
     },
     {
       "Id": "/Users/mustafaalnaser/Desktop/cybergames/Cybergames/wwwroot/lib/bootstrap/dist/css/bootstrap.css",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap.css"
     },
     {
-      "Id": "/Users/mustafaalnaser/Desktop/cybergames/Cybergames/wwwroot/lib/bootstrap/dist/css/bootstrap.css.map",
-      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap.css.map"
-    },
-    {
       "Id": "/Users/mustafaalnaser/Desktop/cybergames/Cybergames/wwwroot/lib/bootstrap/dist/css/bootstrap.min.css",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap.min.css"
-    },
-    {
-      "Id": "/Users/mustafaalnaser/Desktop/cybergames/Cybergames/wwwroot/lib/bootstrap/dist/css/bootstrap.min.css.map",
-      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap.min.css.map"
     },
     {
       "Id": "/Users/mustafaalnaser/Desktop/cybergames/Cybergames/wwwroot/lib/bootstrap/dist/css/bootstrap.rtl.css",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap.rtl.css"
     },
     {
-      "Id": "/Users/mustafaalnaser/Desktop/cybergames/Cybergames/wwwroot/lib/bootstrap/dist/css/bootstrap.rtl.css.map",
-      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap.rtl.css.map"
-    },
-    {
       "Id": "/Users/mustafaalnaser/Desktop/cybergames/Cybergames/wwwroot/lib/bootstrap/dist/css/bootstrap.rtl.min.css",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap.rtl.min.css"
-    },
-    {
-      "Id": "/Users/mustafaalnaser/Desktop/cybergames/Cybergames/wwwroot/lib/bootstrap/dist/css/bootstrap.rtl.min.css.map",
-      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap.rtl.min.css.map"
     },
     {
       "Id": "/Users/mustafaalnaser/Desktop/cybergames/Cybergames/wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.js",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.bundle.js"
     },
     {
-      "Id": "/Users/mustafaalnaser/Desktop/cybergames/Cybergames/wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.js.map",
-      "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.bundle.js.map"
-    },
-    {
       "Id": "/Users/mustafaalnaser/Desktop/cybergames/Cybergames/wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.min.js",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.bundle.min.js"
-    },
-    {
-      "Id": "/Users/mustafaalnaser/Desktop/cybergames/Cybergames/wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map",
-      "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map"
     },
     {
       "Id": "/Users/mustafaalnaser/Desktop/cybergames/Cybergames/wwwroot/lib/bootstrap/dist/js/bootstrap.esm.js",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.esm.js"
     },
     {
-      "Id": "/Users/mustafaalnaser/Desktop/cybergames/Cybergames/wwwroot/lib/bootstrap/dist/js/bootstrap.esm.js.map",
-      "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.esm.js.map"
-    },
-    {
       "Id": "/Users/mustafaalnaser/Desktop/cybergames/Cybergames/wwwroot/lib/bootstrap/dist/js/bootstrap.esm.min.js",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.esm.min.js"
-    },
-    {
-      "Id": "/Users/mustafaalnaser/Desktop/cybergames/Cybergames/wwwroot/lib/bootstrap/dist/js/bootstrap.esm.min.js.map",
-      "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.esm.min.js.map"
     },
     {
       "Id": "/Users/mustafaalnaser/Desktop/cybergames/Cybergames/wwwroot/lib/bootstrap/dist/js/bootstrap.js",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.js"
     },
     {
-      "Id": "/Users/mustafaalnaser/Desktop/cybergames/Cybergames/wwwroot/lib/bootstrap/dist/js/bootstrap.js.map",
-      "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.js.map"
-    },
-    {
       "Id": "/Users/mustafaalnaser/Desktop/cybergames/Cybergames/wwwroot/lib/bootstrap/dist/js/bootstrap.min.js",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.min.js"
-    },
-    {
-      "Id": "/Users/mustafaalnaser/Desktop/cybergames/Cybergames/wwwroot/lib/bootstrap/dist/js/bootstrap.min.js.map",
-      "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.min.js.map"
     },
     {
       "Id": "/Users/mustafaalnaser/Desktop/cybergames/Cybergames/wwwroot/lib/jquery-validation-unobtrusive/LICENSE.txt",
@@ -251,10 +171,6 @@
     {
       "Id": "/Users/mustafaalnaser/Desktop/cybergames/Cybergames/wwwroot/lib/jquery/dist/jquery.min.js",
       "PackagePath": "staticwebassets/lib/jquery/dist/jquery.min.js"
-    },
-    {
-      "Id": "/Users/mustafaalnaser/Desktop/cybergames/Cybergames/wwwroot/lib/jquery/dist/jquery.min.map",
-      "PackagePath": "staticwebassets/lib/jquery/dist/jquery.min.map"
     },
     {
       "Id": "obj/Debug/net8.0/staticwebassets/msbuild.Cybergames.Microsoft.AspNetCore.StaticWebAssets.props",
