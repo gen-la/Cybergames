@@ -54,6 +54,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXMvSWRlbnRpdHkvUGFnZXMvX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[/Users/mustafaalnaser/Desktop/cybergames/Cybergames/Pages/AccessDenied.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQWNjZXNzRGVuaWVkLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [/Users/mustafaalnaser/Desktop/cybergames/Cybergames/Pages/Admin/Games/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQWRtaW4vR2FtZXMvQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -92,6 +96,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [/Users/mustafaalnaser/Desktop/cybergames/Cybergames/Pages/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvUHJpdmFjeS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/mustafaalnaser/Desktop/cybergames/Cybergames/Pages/PurchasedGames.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvUHVyY2hhc2VkR2FtZXMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/mustafaalnaser/Desktop/cybergames/Cybergames/Pages/Shared/_LoginPartial.cshtml]

@@ -51,6 +51,7 @@ builder.Services.AddHttpContextAccessor();
 // Register CartService
 builder.Services.AddScoped<CartService>();
 
+builder.Services.AddScoped<GameService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
