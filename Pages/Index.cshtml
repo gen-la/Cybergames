@@ -5,8 +5,35 @@ ViewData["Title"] = "Home page";
 }
 
 <!-- Hero Section -->
-<section class="hero d-flex align-items-center position-relative overflow-hidden">
+@*<section class="hero d-flex align-items-center position-relative overflow-hidden">
     <canvas id="fireworksCanvas"></canvas>
+    <div class="position-relative z-1 text-center text-white w-100">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <h1 class="animate__animated animate__fadeInDown neon-text">Welcome to CyberGames</h1>
+                    <p class="lead mb-5 animate__animated animate__fadeInUp animate__delay-1s">Discover the future of gaming with our cutting-edge experience</p>
+                    <div class="animate__animated animate__fadeInUp animate__delay-2s">
+                        <a href="#featured-games" class="btn btn-primary btn-lg px-4 me-3 glow-on-hover">Explore Games</a>
+                        <a id="register" asp-area="Identity" asp-page="/Account/Register" class="btn btn-outline-light btn-lg px-4 glow-on-hover">Join now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>*@
+<!-- Hero Section with Video Background -->
+<section class="hero d-flex align-items-center position-relative overflow-hidden">
+    <!-- Video Background -->
+    <div class="video-background position-absolute w-100 h-100">
+        <video autoplay loop muted playsinline class="w-100 h-100 object-fit-cover">
+            <source src="~/video/hero-background.mp4" type="video/mp4">
+            <!-- Fallback for browsers that don't support video -->
+            Your browser does not support the video tag.
+        </video>
+    </div>
+    
+    <!-- Content overlay -->
     <div class="position-relative z-1 text-center text-white w-100">
         <div class="container">
             <div class="row justify-content-center">
