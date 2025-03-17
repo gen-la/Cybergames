@@ -1,135 +1,85 @@
-/* General Styles */
-body {
-    font-family: 'Poppins', sans-serif;
-    background-color: #f8f9fa;
+/* Modern Cyberpunk Games Styling */
+
+:root {
+    --cyber-primary: #00e5ff;
+    --cyber-secondary: #ff00ff;
+    --cyber-accent: #ffff00;
+    --cyber-dark: #0a0a2a;
+    --cyber-darker: #040435;
+    --cyber-light: #fff7f7;
 }
 
-/* Hero Section */
-.hero {
-    position: relative;
-    width: 100vw;
-    height: 80vh;
-    padding: 0;
-    overflow: hidden;
-    margin-left: calc(-50vw + 50%);
-    margin-top: -20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: linear-gradient(135deg, #000, #1a1a1a);
-}
 
-/* Hero video background */
-.video-background {
-    z-index: 0;
-    top: 0;
-    left: 0;
-}
-
-.video-background video {
-    object-fit: cover;
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-}
-/*-----------------------*/
-
-#fireworksCanvas {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 0;
-    pointer-events: none;
-}
-
-.hero h1 {
-    font-size: 4rem;
-    font-weight: 700;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
-}
-
-.hero p {
-    font-size: 1.5rem;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
-}
-
-.hero .btn {
-    font-size: 1.2rem;
-    padding: 10px 25px;
-    border-radius: 25px;
-    transition: all 0.3s ease;
-}
-
-.hero .btn-primary {
-    background-color: #007bff;
-    border: none;
-}
-
-.hero .btn-outline-light {
-    border: 2px solid #fff;
-}
-
-.hero .btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-}
-
-/* Featured Games Section */
-.featured-games {
-    padding: 60px 0;
-}
-
+/* Base Game Card Styles */
 .game-container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 30px;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 25px;
     padding: 20px;
 }
 
 .game-card {
-    background-color: white;
-    border-radius: 15px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: rgba(5, 5, 24, 0.8);
+    border-radius: 12px;
     overflow: hidden;
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    transition: all 0.3s ease;
     max-width: 100%;
     display: flex;
     flex-direction: column;
+    position: relative;
+    border: 1px solid rgba(0, 229, 255, 0.3);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
-.game-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+.cyber-game-grid-card {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.cyber-game-grid-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 25px rgba(0, 229, 255, 0.25);
+    border-color: var(--cyber-primary);
+}
+
+.cyber-card-header-accent {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 25px;
+    height: 25px;
+    background-color: var(--cyber-primary);
+    clip-path: polygon(100% 0, 0 0, 100% 100%);
+    z-index: 2;
 }
 
 .game-card img {
     width: 100%;
-    height: 400px;
-    object-fit:cover;
+    height: 240px;
+    object-fit: cover;
+    transition: all 0.5s ease;
+}
+
+.cyber-game-grid-card:hover img {
+    transform: scale(1.05);
 }
 
 .game-card-body {
-    padding: 20px;
+    padding: 15px;
     flex-grow: 1;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    background-color: rgba(5, 5, 24, 0.9);
+    color: var(--cyber-light);
+    position: relative;
+    z-index: 1;
 }
 
 .game-card-body h2 {
-    font-size: 1.4rem;
-    margin: 10px 0;
-    color: #333;
-}
-
-.game-card-body p {
-    margin: 5px 0;
-    color: #555;
-    flex-grow: 1;
+    font-size: 1.2rem;
+    margin: 5px 0 10px;
+    color: var(--cyber-primary);
+    font-weight: 600;
 }
 
 .game-card-footer {
@@ -137,98 +87,120 @@ body {
     justify-content: space-between;
     align-items: center;
     padding-top: 10px;
+    border-top: 1px solid rgba(0, 229, 255, 0.2);
+    margin-top: 10px;
 }
 
-.game-card-footer span {
-    font-weight: bold;
-    color: #333;
+.game-card-price {
+    font-weight: 600;
+    color: var(--cyber-primary);
+    font-size: 1.1rem;
 }
 
-.game-card-footer .category {
-    background-color: #007bff;
-    color: white;
-    padding: 2px 5px;
-    border-radius: 5px;
+.cyber-category {
+    background-color: rgba(255, 0, 255, 0.2);
+    color: var(--cyber-secondary);
+    padding: 3px 8px;
+    border-radius: 20px;
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    border: 1px solid var(--cyber-secondary);
 }
 
-/* Animations */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
+/* Cyber Card Glitch Effect - Toned down for modern look */
+.cyber-card-glitch {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+            45deg,
+            transparent 65%,
+            rgba(0, 229, 255, 0.3) 65%,
+            rgba(0, 229, 255, 0.3) 68%,
+            transparent 68%
+    );
+    background-size: 300% 300%;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    z-index: 0;
+}
+
+.cyber-card-glitch.active {
+    opacity: 0.1;
+    animation: cyber-card-animation 1.5s infinite linear;
+}
+
+@keyframes cyber-card-animation {
+    0% {
+        background-position: 0% 0%;
     }
-    to {
-        opacity: 1;
-        transform: translateY(0);
+    100% {
+        background-position: 300% 300%;
     }
 }
 
-.animate__animated {
-    animation-duration: 1s;
-    animation-fill-mode: both;
+/* Trending Games Section */
+.trending-games {
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+    margin-bottom: 30px;
 }
 
-.animate__fadeIn {
-    animation-name: fadeIn;
-}
-
-.animate__fadeInUp {
-    animation-name: fadeInUp;
-}
-
-.animate__delay-1s {
-    animation-delay: 1s;
-}
-
-.animate__delay-2s {
-    animation-delay: 2s;
-}
-
-/* Neon Text Effect */
-.neon-text {
-    color: var(--white);
-    text-shadow: 0 0 10px var(--primary-color), 0 0 20px var(--primary-color), 0 0 40px var(--primary-color);
-}
-
-/* Glow Effect on Hover */
-.glow-on-hover:hover {
-    box-shadow: 0 0 15px var(--primary-color), 0 0 30px var(--primary-color);
-}
-
-/* Trending Games Scroll */
 .trending-games-scroll {
     display: flex;
     overflow-x: auto;
-    gap: 15px;
-    padding-bottom: 20px;
+    gap: 20px;
+    padding: 10px 0 20px;
+    position: relative;
+    z-index: 1;
 }
 
 .trending-games-scroll::-webkit-scrollbar {
-    height: 8px;
+    height: 6px;
 }
 
 .trending-games-scroll::-webkit-scrollbar-thumb {
-    background: var(--primary-color);
+    background: var(--cyber-primary);
+    border-radius: 10px;
+}
+
+.trending-games-scroll::-webkit-scrollbar-track {
+    background: rgba(0, 229, 255, 0.1);
     border-radius: 10px;
 }
 
 .trending-game-card {
     position: relative;
-    min-width: 200px;
-    height: 300px;
-    border-radius: 15px;
+    min-width: 180px;
+    height: 270px;
+    border-radius: 12px;
     overflow: hidden;
-    transition: var(--transition);
+    transition: all 0.3s ease;
+    border: 1px solid rgba(0, 229, 255, 0.3);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
-.trending-game-card h3{
-    color: white;
-    text-align: center;
+
+.cyber-game-card:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 8px 25px rgba(0, 229, 255, 0.25);
+    border-color: var(--cyber-primary);
 }
 
 .trending-game-card img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    transition: all 0.5s ease;
+}
+
+.cyber-game-card:hover img {
+    transform: scale(1.05);
 }
 
 .trending-game-overlay {
@@ -237,16 +209,364 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.6);
+    background: linear-gradient(to top, rgba(5, 5, 24, 0.9), rgba(5, 5, 24, 0.5) 50%, transparent);
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
+    padding: 20px;
     opacity: 0;
-    transition: var(--transition);
+    transition: all 0.3s ease;
 }
 
 .trending-game-card:hover .trending-game-overlay {
     opacity: 1;
+}
+
+.trending-game-overlay h3 {
+    color: var(--cyber-primary);
+    margin-bottom: 15px;
+    text-align: center;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+/* Hero Section */
+.hero {
+    height: 85vh;
+    min-height: 500px;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 30px;
+    border-radius: 12px;
+}
+
+.video-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(5, 5, 24, 0.7), rgba(10, 10, 42, 0.8));
+}
+
+/* Cyber Buttons - More modern and smooth */
+.cyber-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.cyber-button {
+    position: relative;
+    background-color: var(--cyber-primary);
+    color: var(--cyber-dark);
+    border: none;
+    padding: 10px 25px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    z-index: 1;
+    display: inline-block;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    cursor: pointer;
+    border-radius: 30px;
+}
+
+.cyber-button:hover {
+    color: var(--cyber-dark);
+    background-color: var(--cyber-primary);
+    box-shadow: 0 0 20px rgba(0, 229, 255, 0.5);
+    text-decoration: none;
+    transform: translateY(-3px);
+}
+
+.cyber-button-outline {
+    position: relative;
+    background-color: transparent;
+    color: var(--cyber-primary);
+    border: 1px solid var(--cyber-primary);
+    padding: 10px 25px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    z-index: 1;
+    display: inline-block;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    border-radius: 30px;
+}
+
+.cyber-button-outline:hover {
+    color: var(--cyber-dark);
+    background-color: var(--cyber-primary);
+    box-shadow: 0 0 20px rgba(0, 229, 255, 0.5);
+    text-decoration: none;
+    transform: translateY(-3px);
+}
+
+.cyber-button-sm {
+    position: relative;
+    background-color: var(--cyber-primary);
+    color: var(--cyber-dark);
+    border: none;
+    padding: 6px 12px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    z-index: 1;
+    display: inline-block;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    cursor: pointer;
+    border-radius: 20px;
+}
+
+.cyber-button-sm:hover {
+    color: var(--cyber-dark);
+    background-color: var(--cyber-primary);
+    box-shadow: 0 0 15px rgba(0, 229, 255, 0.5);
+    text-decoration: none;
+    transform: translateY(-2px);
+}
+
+.cyber-button span,
+.cyber-button-outline span,
+.cyber-button-sm span {
+    position: relative;
+    z-index: 2;
+}
+
+/* Ensure button text is always readable */
+.cyber-button,
+.cyber-button-outline,
+.cyber-button-sm {
+    font-weight: 600;
+    position: relative;
+    z-index: 2;
+}
+
+/* Form Inputs */
+.cyber-input-group {
+    position: relative;
+    margin-bottom: 1rem;
+}
+
+.cyber-input {
+    background-color: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(0, 229, 255, 0.3);
+    color: var(--cyber-light);
+    padding: 0.5rem;
+    transition: all 0.3s ease;
+    border-radius: 6px;
+}
+
+.cyber-input:focus {
+    background-color: rgba(0, 229, 255, 0.05);
+    box-shadow: 0 0 10px rgba(0, 229, 255, 0.2);
+    outline: none;
+    border-color: var(--cyber-primary);
+}
+
+/* Modern Cyberpunk Container */
+.cyberpunk-container {
+    position: relative;
+    background-color: rgba(5, 5, 24, 0.8);
+    color: var(--cyber-light);
+    padding: 2rem;
+    border: 1px solid rgba(0, 229, 255, 0.3);
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    border-radius: 12px;
+}
+
+/* Modern Cyber Header */
+.cyber-header {
+    position: relative;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.cyber-line {
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--cyber-primary), transparent);
+    margin: 0.5rem auto;
+    position: relative;
+    overflow: hidden;
+    max-width: 200px;
+}
+
+.cyber-line::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent);
+    animation: cyber-line-animation 3s infinite;
+}
+
+@keyframes cyber-line-animation {
+    0% {
+        left: -100%;
+    }
+    100% {
+        left: 100%;
+    }
+}
+
+/* Glitch Effect - Toned down for modern look */
+.glitch {
+    position: relative;
+    color: var(--cyber-light);
+}
+
+.glitch::before,
+.glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+}
+
+.glitch::before {
+    color: var(--cyber-secondary);
+    z-index: -1;
+}
+
+.glitch::after {
+    color: var(--cyber-primary);
+    z-index: -2;
+}
+
+.glitch.active::before {
+    animation: glitch-animation 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+.glitch.active::after {
+    animation: glitch-animation 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) reverse both;
+}
+
+@keyframes glitch-animation {
+    0% {
+        transform: translate(0);
+        opacity: 0;
+    }
+    20% {
+        transform: translate(-3px, 3px);
+        opacity: 0.3;
+    }
+    40% {
+        transform: translate(-3px, -3px);
+        opacity: 0.3;
+    }
+    60% {
+        transform: translate(3px, 3px);
+        opacity: 0.3;
+    }
+    80% {
+        transform: translate(3px, -3px);
+        opacity: 0.3;
+    }
+    100% {
+        transform: translate(0);
+        opacity: 0;
+    }
+}
+
+/* Decorative Elements - More subtle */
+.cyber-decoration {
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    border: 1px solid rgba(0, 229, 255, 0.3);
+    opacity: 0.2;
+    z-index: 0;
+    border-radius: 50%;
+}
+
+.cyber-decoration.top-right {
+    top: -30px;
+    right: -30px;
+}
+
+.cyber-decoration.bottom-left {
+    bottom: -30px;
+    left: -30px;
+}
+
+.cyber-decoration.pulse {
+    animation: cyber-pulse 1.5s ease;
+}
+
+@keyframes cyber-pulse {
+    0% {
+        opacity: 0.2;
+        border-color: var(--cyber-primary);
+    }
+    50% {
+        opacity: 0.4;
+        border-color: var(--cyber-secondary);
+    }
+    100% {
+        opacity: 0.2;
+        border-color: var(--cyber-primary);
+    }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .cyber-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .game-container {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+
+    .trending-game-card {
+        min-width: 160px;
+        height: 240px;
+    }
+
+    .hero {
+        height: 70vh;
+    }
+}
+
+@media (max-width: 576px) {
+    .game-container {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    }
+
+    .game-card img {
+        height: 200px;
+    }
+
+    .hero {
+        height: 60vh;
+    }
 }
 

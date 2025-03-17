@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "iOWIRle9sYpwaATspcgAKnvcSPY4gqPYTjmcRW0QmhE=",
+  "Hash": "bTG+UB3WYB4ZlkRxS+xFOYBIkrVb8YzUFA+WiGjak7Y=",
   "Source": "Cybergames",
   "BasePath": "_content/Cybergames",
   "Mode": "Default",
@@ -1195,12 +1195,12 @@
       "OriginalItemSpec": "/Users/mustafaalnaser/Desktop/cybergames/Cybergames/obj/Debug/net8.0/scopedcss/projectbundle/Cybergames.bundle.scp.css"
     },
     {
-      "Identity": "/Users/mustafaalnaser/Desktop/cybergames/Cybergames/wwwroot/css/gameDetalis.css",
+      "Identity": "/Users/mustafaalnaser/Desktop/cybergames/Cybergames/wwwroot/css/GameDetalis.css",
       "SourceId": "Cybergames",
       "SourceType": "Discovered",
       "ContentRoot": "/Users/mustafaalnaser/Desktop/cybergames/Cybergames/wwwroot/",
       "BasePath": "_content/Cybergames",
-      "RelativePath": "css/gameDetalis.css",
+      "RelativePath": "css/GameDetalis.css",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -1211,7 +1211,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot/css/gameDetalis.css"
+      "OriginalItemSpec": "wwwroot/css/GameDetalis.css"
     },
     {
       "Identity": "/Users/mustafaalnaser/Desktop/cybergames/Cybergames/wwwroot/css/index.css",
@@ -1991,6 +1991,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/lib/jquery/LICENSE.txt"
+    },
+    {
+      "Identity": "/Users/mustafaalnaser/Desktop/cybergames/Cybergames/wwwroot/video/hero-background.mp4",
+      "SourceId": "Cybergames",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/mustafaalnaser/Desktop/cybergames/Cybergames/wwwroot/",
+      "BasePath": "_content/Cybergames",
+      "RelativePath": "video/hero-background.mp4",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/video/hero-background.mp4"
     }
   ]
 }

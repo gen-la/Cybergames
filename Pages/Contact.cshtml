@@ -1,0 +1,113 @@
+@page
+@model Cybergames.Pages.Contact
+@{
+ViewData["Title"] = "Contact Us";
+}
+
+<div class="cyberpunk-container container mt-5">
+    <div class="cyber-header">
+        <h1 class="display-4 glitch" data-text="Contact Us">Contact Us</h1>
+        <div class="cyber-line"></div>
+    </div>
+    <p class="lead cyber-text">Have questions or inquiries? Feel free to reach out to us!</p>
+
+    <div class="row mt-4">
+        <div class="col-md-6">
+            <div class="cyber-card">
+                <div class="cyber-card-header">
+                    <h3>Contact Information</h3>
+                </div>
+                <div class="cyber-card-body">
+                    <ul class="list-unstyled">
+                        <li><i class="bi bi-geo-alt-fill cyber-icon"></i> <strong>Address:</strong> Example Street 123, 123 45 Stockholm</li>
+                        <li><i class="bi bi-telephone-fill cyber-icon"></i> <strong>Phone:</strong> <a href="tel:+46123456789" class="cyber-link">+46 123 456 789</a></li>
+                        <li><i class="bi bi-envelope-fill cyber-icon"></i> <strong>Email:</strong> <a href="mailto:info@cybergames.com" class="cyber-link">info@cybergames.com</a></li>
+                    </ul>
+                    <div class="cyber-social mt-4">
+                        <a href="#" class="cyber-social-icon"><i class="bi bi-discord"></i></a>
+                        <a href="#" class="cyber-social-icon"><i class="bi bi-twitch"></i></a>
+                        <a href="#" class="cyber-social-icon"><i class="bi bi-steam"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="cyber-image-container mt-4">
+                <img src="~/images/cyber-map.jpg" alt="Cybergames Location" class="img-fluid cyber-image" onerror="this.src='https://via.placeholder.com/600x400/0a0a2a/00ffff?text=CYBERGAMES+LOCATION'">
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="cyber-card">
+                <div class="cyber-card-header">
+                    <h3>Contact Form</h3>
+                </div>
+                <div class="cyber-card-body">
+                    <form method="post" class="cyber-form">
+                        <div class="form-group cyber-input-group">
+                            <label for="name" class="cyber-label">Name</label>
+                            <input type="text" class="form-control cyber-input" id="name" name="name" required>
+                            <div class="cyber-input-line"></div>
+                        </div>
+                        <div class="form-group cyber-input-group">
+                            <label for="email" class="cyber-label">Email</label>
+                            <input type="email" class="form-control cyber-input" id="email" name="email" required>
+                            <div class="cyber-input-line"></div>
+                        </div>
+                        <div class="form-group cyber-input-group">
+                            <label for="message" class="cyber-label">Message</label>
+                            <textarea class="form-control cyber-input" id="message" name="message" rows="5" required></textarea>
+                            <div class="cyber-input-line"></div>
+                        </div>
+                        <button type="submit" class="btn cyber-button">
+                            <span>SEND</span>
+                            <div class="cyber-button-border"></div>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="cyber-decoration top-right"></div>
+    <div class="cyber-decoration bottom-left"></div>
+</div>
+
+@section Scripts {
+<script>
+    // Glitch effect for headings
+    document.addEventListener('DOMContentLoaded', function() {
+        const glitchElements = document.querySelectorAll('.glitch');
+
+        glitchElements.forEach(element => {
+            setInterval(() => {
+                element.classList.add('active');
+                setTimeout(() => {
+                    element.classList.remove('active');
+                }, 200);
+            }, 3000);
+        });
+
+        // Animate cyber decorations
+        const decorations = document.querySelectorAll('.cyber-decoration');
+        decorations.forEach(decoration => {
+            setInterval(() => {
+                decoration.classList.add('pulse');
+                setTimeout(() => {
+                    decoration.classList.remove('pulse');
+                }, 1000);
+            }, 5000);
+        });
+
+        // Form input animation
+        const inputs = document.querySelectorAll('.cyber-input');
+        inputs.forEach(input => {
+            input.addEventListener('focus', function() {
+                this.parentElement.classList.add('active');
+            });
+            input.addEventListener('blur', function() {
+                if (this.value === '') {
+                    this.parentElement.classList.remove('active');
+                }
+            });
+        });
+    });
+</script>
+}

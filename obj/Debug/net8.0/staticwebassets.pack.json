@@ -5,8 +5,8 @@
       "PackagePath": "staticwebassets/Cybergames.bundle.scp.css"
     },
     {
-      "Id": "/Users/mustafaalnaser/Desktop/cybergames/Cybergames/wwwroot/css/gameDetalis.css",
-      "PackagePath": "staticwebassets/css/gameDetalis.css"
+      "Id": "/Users/mustafaalnaser/Desktop/cybergames/Cybergames/wwwroot/css/GameDetalis.css",
+      "PackagePath": "staticwebassets/css/GameDetalis.css"
     },
     {
       "Id": "/Users/mustafaalnaser/Desktop/cybergames/Cybergames/wwwroot/css/index.css",
@@ -171,6 +171,10 @@
     {
       "Id": "/Users/mustafaalnaser/Desktop/cybergames/Cybergames/wwwroot/lib/jquery/dist/jquery.min.js",
       "PackagePath": "staticwebassets/lib/jquery/dist/jquery.min.js"
+    },
+    {
+      "Id": "/Users/mustafaalnaser/Desktop/cybergames/Cybergames/wwwroot/video/hero-background.mp4",
+      "PackagePath": "staticwebassets/video/hero-background.mp4"
     },
     {
       "Id": "obj/Debug/net8.0/staticwebassets/msbuild.Cybergames.Microsoft.AspNetCore.StaticWebAssets.props",

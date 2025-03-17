@@ -4,24 +4,6 @@
 ViewData["Title"] = "Home page";
 }
 
-<!-- Hero Section -->
-@*<section class="hero d-flex align-items-center position-relative overflow-hidden">
-    <canvas id="fireworksCanvas"></canvas>
-    <div class="position-relative z-1 text-center text-white w-100">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-8">
-                    <h1 class="animate__animated animate__fadeInDown neon-text">Welcome to CyberGames</h1>
-                    <p class="lead mb-5 animate__animated animate__fadeInUp animate__delay-1s">Discover the future of gaming with our cutting-edge experience</p>
-                    <div class="animate__animated animate__fadeInUp animate__delay-2s">
-                        <a href="#featured-games" class="btn btn-primary btn-lg px-4 me-3 glow-on-hover">Explore Games</a>
-                        <a id="register" asp-area="Identity" asp-page="/Account/Register" class="btn btn-outline-light btn-lg px-4 glow-on-hover">Join now</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>*@
 <!-- Hero Section with Video Background -->
 <section class="hero d-flex align-items-center position-relative overflow-hidden">
     <!-- Video Background -->
@@ -31,38 +13,54 @@ ViewData["Title"] = "Home page";
             <!-- Fallback for browsers that don't support video -->
             Your browser does not support the video tag.
         </video>
+        <div class="video-overlay"></div>
     </div>
-    
+
     <!-- Content overlay -->
     <div class="position-relative z-1 text-center text-white w-100">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-8">
-                    <h1 class="animate__animated animate__fadeInDown neon-text">Welcome to CyberGames</h1>
-                    <p class="lead mb-5 animate__animated animate__fadeInUp animate__delay-1s">Discover the future of gaming with our cutting-edge experience</p>
-                    <div class="animate__animated animate__fadeInUp animate__delay-2s">
-                        <a href="#featured-games" class="btn btn-primary btn-lg px-4 me-3 glow-on-hover">Explore Games</a>
-                        <a id="register" asp-area="Identity" asp-page="/Account/Register" class="btn btn-outline-light btn-lg px-4 glow-on-hover">Join now</a>
+                    <h1 class="glitch" data-text="Welcome to CyberGames">Welcome to CyberGames</h1>
+                    <div class="cyber-line mb-4"></div>
+                    <p class="lead mb-5 cyber-text">Discover the future of gaming with our cutting-edge experience</p>
+                    <div class="cyber-buttons">
+                        <a href="#featured-games" class="cyber-button">
+                            <span>Explore Games</span>
+                        </a>
+                        <a id="register" asp-area="Identity" asp-page="/Account/Register" class="cyber-button-outline">
+                            <span>Join now</span>
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <div class="cyber-decoration top-right"></div>
+    <div class="cyber-decoration bottom-left"></div>
 </section>
 
 <!-- Trending Games Section -->
-<section class="trending-games py-5">
+<section class="trending-games py-5 cyberpunk-container">
     <div class="container">
-        <h1 class="text-center mb-5 neon-text">Trending Games</h1>
+        <div class="cyber-header">
+            <h1 class="text-center mb-3 glitch" data-text="Trending Games">Trending Games</h1>
+            <div class="cyber-line mb-5"></div>
+        </div>
+
         <div class="trending-games-scroll">
             @foreach (var game in Model.Games.Take(7))
             {
-            <div class="trending-game-card" data-aos="fade-right">
-                <img src="@game.Cover" alt="@game.Title" />
+            <div class="trending-game-card cyber-game-card">
+                <img src="@game.Cover" alt="@game.Title" onerror="this.src='https://via.placeholder.com/300x450/0a0a2a/00ffff?text=@game.Title'" />
                 <div class="trending-game-overlay">
                     <h3>@game.Title</h3>
-                    <a asp-page="/GameDetails" asp-route-id="@game.ID" class="btn btn-outline-light">View Details</a>
+                    <a asp-page="/GameDetails" asp-route-id="@game.ID" class="cyber-button-sm">
+                        <span>View Details</span>
+                    </a>
                 </div>
+                <div class="cyber-card-glitch"></div>
             </div>
             }
         </div>
@@ -70,34 +68,82 @@ ViewData["Title"] = "Home page";
 </section>
 
 <!-- Featured Games Section -->
-<section id="featured-games" class="featured-games py-5">
+<section id="featured-games" class="featured-games py-5 cyberpunk-container">
     <div class="container">
-        <h1 class="text-center mb-5 neon-text">Featured Games</h1>
+        <div class="cyber-header">
+            <h1 class="text-center mb-3 glitch" data-text="Featured Games">Featured Games</h1>
+            <div class="cyber-line mb-5"></div>
+        </div>
+
         <div class="game-container">
             @foreach (var game in Model.Games)
             {
-            <div class="game-card animate__animated animate__fadeInUp">
-                <img src="@game.Cover" alt="@game.Title" class="game-card-image" />
+            <div class="game-card cyber-game-grid-card">
+                <div class="cyber-card-header-accent"></div>
+                <img src="@game.Cover" alt="@game.Title" class="game-card-image" onerror="this.src='https://via.placeholder.com/400x600/0a0a2a/00ffff?text=@game.Title'" />
                 <div class="game-card-body">
                     <h2 class="game-card-title">@game.Title</h2>
                     <form method="post" asp-page-handler="AddToCart" class="game-card-form">
                         <input type="hidden" name="id" value="@game.ID" />
                         <input type="hidden" name="title" value="@game.Title" />
                         <input type="hidden" name="price" value="@game.Price" />
-                        <div class="input-group mb-3">
-                            <input type="number" name="quantity" value="1" min="1" class="form-control" aria-label="Quantity" />
-                            <button type="submit" class="btn btn-primary">Add to Cart</button>
+                        <div class="input-group mb-3 cyber-input-group">
+                            <input type="number" name="quantity" value="1" min="1" class="form-control cyber-input" aria-label="Quantity" />
+                            <button type="submit" class="btn cyber-button-sm">Add to Cart</button>
                         </div>
                     </form>
                     <div class="game-card-footer">
                         <span class="game-card-price">$@((int)game.Price)</span>
-                        <span class="category">@game.Category</span>
-                        <a asp-page="/GameDetails" asp-route-id="@game.ID" class="btn btn-outline-primary">View Details</a>
+                        <span class="category cyber-category">@game.Category</span>
+                        <a asp-page="/GameDetails" asp-route-id="@game.ID" class="cyber-button-sm">
+                            <span>Details</span>
+                        </a>
                     </div>
                 </div>
+                <div class="cyber-card-glitch"></div>
             </div>
             }
         </div>
     </div>
 </section>
+
+@section Scripts {
+<script>
+    // Glitch effect for headings
+    document.addEventListener('DOMContentLoaded', function() {
+        const glitchElements = document.querySelectorAll('.glitch');
+
+        glitchElements.forEach(element => {
+            setInterval(() => {
+                element.classList.add('active');
+                setTimeout(() => {
+                    element.classList.remove('active');
+                }, 200);
+            }, 3000);
+        });
+
+        // Animate cyber decorations
+        const decorations = document.querySelectorAll('.cyber-decoration');
+        decorations.forEach(decoration => {
+            setInterval(() => {
+                decoration.classList.add('pulse');
+                setTimeout(() => {
+                    decoration.classList.remove('pulse');
+                }, 1000);
+            }, 5000);
+        });
+
+        // Card hover effects
+        const cards = document.querySelectorAll('.cyber-game-card, .cyber-game-grid-card');
+        cards.forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.querySelector('.cyber-card-glitch').classList.add('active');
+            });
+            card.addEventListener('mouseleave', function() {
+                this.querySelector('.cyber-card-glitch').classList.remove('active');
+            });
+        });
+    });
+</script>
+}
 
