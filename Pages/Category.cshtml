@@ -21,15 +21,22 @@
                 <div class="col-md-6 mb-4">
                     <div class="card h-100">
                         <img src="@game.Cover" class="card-img-top" alt="@game.Title" style="height: 300px; object-fit: cover;">
-                        <div class="card-body">
-                            <h5 class="card-title">@game.Title</h5>
-                            <p class="card-text text-muted">@game.Category</p>
-                            <p class="card-text"><strong>@game.Price.ToString("C")</strong></p>
-
-                            <button class="btn btn-sm btn-outline-primary mt-2 read-more-btn">Read Description</button>
-
-                            <div class="description-container mt-3" style="display: none;">
-                                <p class="card-text description-text">@game.Description</p>
+                        <div class="game-card-body">
+                            <h2 class="game-card-title">@game.Title</h2>
+                            <form method="post" asp-page-handler="AddToCart" class="game-card-form">
+                                <input type="hidden" name="id" value="@game.ID" />
+                                <input type="hidden" name="title" value="@game.Title" />
+                                <input type="hidden" name="price" value="@game.Price" />
+                                <input type="hidden" name="category" value="@Model.CategoryName" />
+                                <div class="input-group mb-3">
+                                    <input type="number" name="quantity" value="1" min="1" class="form-control" aria-label="Quantity" />
+                                    <button type="submit" class="btn btn-primary">Add to Cart</button>
+                                </div>
+                            </form>
+                            <div class="game-card-footer">
+                                <span class="game-card-price">$@((int)game.Price)</span>
+                                <span class="category">@game.Category</span>
+                                <a asp-page="/GameDetails" asp-route-id="@game.ID" class="btn btn-outline-primary">View Details</a>
                             </div>
                         </div>
                     </div>
@@ -38,25 +45,3 @@
         </div>
     }
 </div>
-
-@section Scripts {
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const readMoreButtons = document.querySelectorAll('.read-more-btn');
-
-            readMoreButtons.forEach(button => {
-                button.addEventListener('click', function () {
-                    const descriptionContainer = this.nextElementSibling;
-
-                    if (descriptionContainer.style.display === 'none') {
-                        descriptionContainer.style.display = 'block';
-                        this.textContent = 'Hide Description';
-                    } else {
-                        descriptionContainer.style.display = 'none';
-                        this.textContent = 'Read Description';
-                    }
-                });
-            });
-        });
-    </script>
-}

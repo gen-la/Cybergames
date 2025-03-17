@@ -74,7 +74,7 @@ app.UseAuthorization();
 
 app.MapRazorPages();
 
-// Add this before app.Run();
+
 // Ensure admin user has the email claim
 using (var scope = app.Services.CreateScope())
 {

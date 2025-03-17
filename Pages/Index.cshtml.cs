@@ -13,7 +13,7 @@ namespace Cybergames.Pages
         private readonly ILogger<IndexModel> _logger;
         private readonly CartService _cartService;
         private readonly ApplicationDbContext _context;
-        private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly SignInManager<ApplicationUser> _signInManager;
 
         public List<Game> Games { get; set; } = new();
         public int CurrentPage { get; set; } = 1;
@@ -24,7 +24,7 @@ namespace Cybergames.Pages
             ILogger<IndexModel> logger, 
             CartService cartService, 
             ApplicationDbContext context,
-            SignInManager<IdentityUser> signInManager)
+            SignInManager<ApplicationUser> signInManager)
         {
             _logger = logger;
             _cartService = cartService;
