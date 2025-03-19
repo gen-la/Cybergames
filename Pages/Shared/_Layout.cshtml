@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@inject CartService CartService
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -71,10 +72,11 @@
                     </li>
                 </ul>
                 <ul class="navbar-nav">
+                    <!-- Add the old cart icon here -->
                     <li class="nav-item">
-                        <a class="nav-link" asp-page="/Cart">
+                        <a asp-page="/Cart" class="cart-icon">
                             <i class="fas fa-shopping-cart"></i>
-                            <span id="cartItemCount" class="cart-badge">@(ViewData["CartItemCount"] ?? 0)</span>
+                            <span class="cart-count">@CartService.GetCartItemCount()</span>
                         </a>
                     </li>
                 </ul>
@@ -123,6 +125,15 @@
                         </li>
                         <li class="list-inline-item mx-1">
                             <a href="/Privacy" class="btn btn-outline-light btn-default text-white">Privacy</a>
+                        </li>
+                        <li class="list-inline-item mx-1">
+                            <a href="/PurchasedGames" class="btn btn-outline-light btn-default text-white">My Games</a>
+                        </li>
+                        <li class="list-inline-item mx-1">
+                            <a href="/About" class="btn btn-outline-light btn-default text-white">About us</a>
+                        </li>
+                        <li class="list-inline-item mx-1">
+                            <a href="/Contact" class="btn btn-outline-light btn-default text-white">Contact</a>
                         </li>
                     </ul>
                 </div>

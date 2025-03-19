@@ -49,7 +49,7 @@ builder.Services.AddSession(options =>
 builder.Services.AddHttpContextAccessor();
 
 // Register CartService
-builder.Services.AddScoped<CartService>();
+builder.Services.AddSingleton<CartService>();
 
 builder.Services.AddScoped<GameService>();
 var app = builder.Build();
@@ -73,7 +73,6 @@ app.UseAuthentication(); // Ensure authentication is enabled
 app.UseAuthorization();
 
 app.MapRazorPages();
-
 
 // Ensure admin user has the email claim
 using (var scope = app.Services.CreateScope())

@@ -2,6 +2,7 @@
 using Cybergames.Models;
 using Microsoft.AspNetCore.Http;
 using System.Text.Json;
+using System.Linq;
 
 public class CartService
 {
@@ -29,6 +30,13 @@ public class CartService
     {
         var session = _httpContextAccessor.HttpContext.Session;
         session.SetObject(CartSessionKey, cart);
+    }
+
+    // Method to get the total number of items in the cart
+    public int GetCartItemCount()
+    {
+        var cart = GetCart();
+        return cart.Items.Sum(item => item.Quantity); // Calculate the total number of items in the cart
     }
 }
 
