@@ -26,11 +26,12 @@ body {
   background-attachment: fixed;
   color: var(--cyber-light);
   color: white;
-  font-family: "Outfit", sans-serif;
+  font-family: "Poppins", sans-serif;
   min-height: 100vh;
   
 h1,h2,h3,h4{
   color: white;
+  font-family: Poppins, sans-serif;
 }  
   
 }

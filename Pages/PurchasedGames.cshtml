@@ -4,9 +4,11 @@
 ViewData["Title"] = "Purchased Games";
 }
 
-<div class="container py-5">
-    <h1 class="display-4 mb-4 fw-bold text-center">Your Game Library</h1>
-
+<div class="cyberpunk-container container py-5">
+    <div class="cyber-header">
+        <h1 class="text-center mb-3 glitch" data-text="Your Game Library">Your Game Library</h1>
+        <div class="cyber-line mb-5"></div>
+    </div>
     @if (Model.PurchasedGames.Any())
     {
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">

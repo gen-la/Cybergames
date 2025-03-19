@@ -4,44 +4,55 @@
     ViewData["Title"] = $"{Model.CategoryName} Games";
 }
 
-<div class="container py-5">
-    <h1 class="mb-4">@Model.CategoryName Games</h1>
+<div class="cyberpunk-container container py-5">
+    <div class="cyber-header">
+        <h1 class="text-center mb-3 glitch" data-text="@Model.CategoryName Games">@Model.CategoryName Games</h1>
+        <div class="cyber-line mb-5"></div>
+    </div>
 
     @if (!Model.Games.Any())
     {
-        <div class="alert alert-info">
-            <p>No games found in this category.</p>
+        <div class="cyber-card">
+            <div class="cyber-card-body">
+                <p>No games found in this category.</p>
+            </div>
         </div>
     }
     else
     {
-        <div class="row">
+        <div class="game-container">
             @foreach (var game in Model.Games)
             {
-                <div class="col-md-6 mb-4">
-                    <div class="card h-100">
-                        <img src="@game.Cover" class="card-img-top" alt="@game.Title" style="height: 300px; object-fit: cover;">
-                        <div class="game-card-body">
-                            <h2 class="game-card-title">@game.Title</h2>
-                            <form method="post" asp-page-handler="AddToCart" class="game-card-form">
-                                <input type="hidden" name="id" value="@game.ID" />
-                                <input type="hidden" name="title" value="@game.Title" />
-                                <input type="hidden" name="price" value="@game.Price" />
-                                <input type="hidden" name="category" value="@Model.CategoryName" />
-                                <div class="input-group mb-3">
-                                    <input type="number" name="quantity" value="1" min="1" class="form-control" aria-label="Quantity" />
-                                    <button type="submit" class="btn btn-primary">Add to Cart</button>
-                                </div>
-                            </form>
-                            <div class="game-card-footer">
-                                <span class="game-card-price">$@((int)game.Price)</span>
-                                <span class="category">@game.Category</span>
-                                <a asp-page="/GameDetails" asp-route-id="@game.ID" class="btn btn-outline-primary">View Details</a>
+                <div class="game-card cyber-game-grid-card">
+                    <div class="cyber-card-header-accent"></div>
+                    <img src="@game.Cover" alt="@game.Title" class="game-card-image" onerror="this.src='https://via.placeholder.com/400x600/0a0a2a/00ffff?text=@game.Title'" />
+                    <div class="game-card-body">
+                        <h2 class="game-card-title">@game.Title</h2>
+                        <form method="post" asp-page-handler="AddToCart" class="game-card-form">
+                            <input type="hidden" name="id" value="@game.ID" />
+                            <input type="hidden" name="title" value="@game.Title" />
+                            <input type="hidden" name="price" value="@game.Price" />
+                            <input type="hidden" name="category" value="@Model.CategoryName" />
+                            <div class="input-group mb-3 cyber-input-group">
+                                <input type="number" name="quantity" value="1" min="1" class="form-control cyber-input" aria-label="Quantity" />
+                                <button type="submit" class="btn cyber-button-sm">Add to Cart</button>
                             </div>
+                        </form>
+                        <div class="game-card-footer">
+                            <span class="game-card-price">$@((int)game.Price)</span>
+                            <span class="category cyber-category">@game.Category</span>
+                            <a asp-page="/GameDetails" asp-route-id="@game.ID" class="cyber-button-sm">
+                                <span>Details</span>
+                            </a>
                         </div>
                     </div>
+                    <div class="cyber-card-glitch"></div>
                 </div>
             }
         </div>
     }
+    
+    <div class="cyber-decoration top-right"></div>
+    <div class="cyber-decoration bottom-left"></div>
 </div>
+

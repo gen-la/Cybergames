@@ -1,82 +1,113 @@
 @page "{id}"
 @model Cybergames.Pages.GameDetailsModel
 @{
-    ViewData["Title"] = Model.Game?.Title ?? "Game Details";
+ViewData["Title"] = Model.Game?.Title ?? "Game Details";
 }
 
-<div class="container my-5">
+<div class="cyberpunk-container container py-5">
+    <div class="cyber-header">
+        <h1 class="text-center mb-3 glitch" data-text="@Model.Game.Title">@Model.Game.Title</h1>
+        <div class="cyber-line mb-5"></div>
+    </div>
+
     <div class="row">
-        <!-- Spelcover och bilder -->
+        <!-- Game images with carousel -->
         <div class="col-md-6">
-            <div class="card mb-4">
-                <img src="@Model.Game.Img1" alt="@Model.Game.Title" class="card-img-top" />
-            </div>
-            <div class="row">
-                @if (!string.IsNullOrEmpty(Model.Game.Img1))
-                {
-                <div class="col-md-4 mb-3">
-                    <img src="@Model.Game.Img1" alt="Image 1" class="img-fluid rounded" />
+            <div class="cyber-card mb-4">
+                <div id="gameCarousel" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        @{
+                        var images = new List<string> { Model.Game.Img1, Model.Game.Img2, Model.Game.Img3, Model.Game.Img4, Model.Game.Img5 }
+                        .Where(img => !string.IsNullOrEmpty(img))
+                        .ToList();
+
+                        for (int i = 0; i < images.Count; i++)
+                        {
+                        <div class="carousel-item @(i == 0 ? "active" : "")">
+                            <img src="@images[i]" class="d-block w-100 cyber-carousel-img" alt="@Model.Game.Title"
+                                 onerror="this.src='https://via.placeholder.com/800x450/0a0a2a/00ffff?text=@Model.Game.Title'">
+                            <div class="carousel-caption cyber-carousel-caption">
+                                <span class="cyber-carousel-indicator">@(i + 1)/@images.Count</span>
+                            </div>
+                        </div>
+                        }
+                        }
+                    </div>
+
+                    <!-- Carousel controls -->
+                    <button class="carousel-control-prev cyber-carousel-control" type="button" data-bs-target="#gameCarousel" data-bs-slide="prev">
+                        <i class="bi bi-chevron-left cyber-carousel-icon"></i>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next cyber-carousel-control" type="button" data-bs-target="#gameCarousel" data-bs-slide="next">
+                        <i class="bi bi-chevron-right cyber-carousel-icon"></i>
+                        <span class="visually-hidden">Next</span>
+                    </button>
                 </div>
-                }
-                @if (!string.IsNullOrEmpty(Model.Game.Img2))
-                {
-                <div class="col-md-4 mb-3">
-                    <img src="@Model.Game.Img2" alt="Image 2" class="img-fluid rounded" />
-                </div>
-                }
-                @if (!string.IsNullOrEmpty(Model.Game.Img3))
-                {
-                <div class="col-md-4 mb-3">
-                    <img src="@Model.Game.Img3" alt="Image 3" class="img-fluid rounded" />
-                </div>
-                }
             </div>
         </div>
 
-        <!-- Spelinformation -->
+        <!-- Game information -->
         <div class="col-md-6">
-            <h1 class="display-4 fw-bold">@Model.Game.Title</h1>
-            <p class="lead">@Model.Game.Description</p>
-            <div class="mb-4">
-                <span class="badge bg-primary fs-5">$@((int)Model.Game.Price)</span>
-                <span class="badge bg-secondary fs-5 ms-2">@Model.Game.Category</span>
-            </div>
+            <div class="cyber-card">
+                <div class="cyber-card-body">
+                    <p class="lead cyber-text">@Model.Game.Description</p>
 
-            <form method="post" asp-page-handler="AddToCart" class="mb-4">
-                <input type="hidden" name="id" value="@Model.Game.ID" />
-                <input type="hidden" name="title" value="@Model.Game.Title" />
-                <input type="hidden" name="price" value="@Model.Game.Price" />
-                <div class="input-group" style="max-width: 300px;">
-                    <input type="number" name="quantity" value="1" min="1" class="form-control" />
-                    <button type="submit" class="btn btn-primary">Add to Cart</button>
+                    <div class="mb-4">
+                        <span class="badge bg-primary fs-5">$@((int)Model.Game.Price)</span>
+                        <span class="badge bg-secondary fs-5 ms-2">@Model.Game.Category</span>
+                    </div>
 
+                    <form method="post" asp-page-handler="AddToCart" class="game-card-form mb-3">
+                        <input type="hidden" name="id" value="@Model.Game.ID" />
+                        <input type="hidden" name="title" value="@Model.Game.Title" />
+                        <input type="hidden" name="price" value="@Model.Game.Price" />
+                        <div class="input-group mb-3 cyber-input-group">
+                            <input type="number" name="quantity" value="1" min="1" class="form-control cyber-input" aria-label="Quantity" />
+                            <button type="submit" class="btn cyber-button-cart">
+                                <i class="fas fa-cart-plus"></i> Add to Cart
+                            </button>
+                        </div>
+                    </form>
+
+                    <a href="/Index" class="cyber-button">
+                        <span>Back to Games</span>
+                    </a>
                 </div>
-            </form>
-
-            <a asp-page="/Index" class="btn btn-outline-primary">
-                <i class="fas fa-arrow-left"></i> Back to Games
-            </a>
+            </div>
         </div>
     </div>
+
+    <div class="cyber-decoration top-right"></div>
+    <div class="cyber-decoration bottom-left"></div>
 </div>
 
-<!-- Ytterligare bilder -->
-@if (!string.IsNullOrEmpty(Model.Game.Img4) || !string.IsNullOrEmpty(Model.Game.Img5))
-{
-<div class="container my-5">
-    <div class="row">
-        @if (!string.IsNullOrEmpty(Model.Game.Img4))
-        {
-        <div class="col-md-6 mb-3">
-            <img src="@Model.Game.Img4" alt="Image 4" class="img-fluid rounded" />
-        </div>
-        }
-        @if (!string.IsNullOrEmpty(Model.Game.Img5))
-        {
-        <div class="col-md-6 mb-3">
-            <img src="@Model.Game.Img5" alt="Image 5" class="img-fluid rounded" />
-        </div>
-        }
-    </div>
-</div>
-}
+<style>
+    .cyber-button-cart {
+        background-color: #ff007f;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        font-weight: bold;
+        text-transform: uppercase;
+        border-radius: 5px;
+        transition: all 0.3s ease;
+    }
+    .cyber-button-cart:hover {
+        background-color: #cc0066;
+    }
+
+    .cyber-button-back {
+        background-color: #00ffff;
+        color: #000;
+        border: none;
+        padding: 10px 20px;
+        font-weight: bold;
+        text-transform: uppercase;
+        border-radius: 5px;
+        transition: all 0.3s ease;
+    }
+    .cyber-button-back:hover {
+        background-color: #00cccc;
+    }
+</style>
