@@ -6,7 +6,7 @@ ViewData["Title"] = "About Us";
 
 <div class="cyberpunk-container container mt-5">
     <div class="cyber-header">
-        <h1 class="display-4 glitch" data-text="About Us">About Us</h1>
+        <h1 class="display-5 glitch" data-text="About Us">About Us</h1>
         <div class="cyber-line"></div>
     </div>
     <p class="lead cyber-text">We are Cybergames – your partner for the latest and greatest games!</p>
@@ -124,50 +124,3 @@ ViewData["Title"] = "About Us";
     <div class="cyber-decoration bottom-left"></div>
 </div>
 
-@section Scripts {
-<script>
-    // Glitch effect for headings
-    document.addEventListener('DOMContentLoaded', function() {
-        const glitchElements = document.querySelectorAll('.glitch');
-
-        glitchElements.forEach(element => {
-            setInterval(() => {
-                element.classList.add('active');
-                setTimeout(() => {
-                    element.classList.remove('active');
-                }, 200);
-            }, 3000);
-        });
-
-        // Counter animation
-        const counters = document.querySelectorAll('.counter');
-        counters.forEach(counter => {
-            const target = +counter.dataset.target;
-            const increment = target / 100;
-
-            const updateCounter = () => {
-                const count = +counter.innerText;
-                if (count < target) {
-                    counter.innerText = Math.ceil(count + increment);
-                    setTimeout(updateCounter, 15);
-                } else {
-                    counter.innerText = target;
-                }
-            };
-
-            updateCounter();
-        });
-
-        // Animate cyber decorations
-        const decorations = document.querySelectorAll('.cyber-decoration');
-        decorations.forEach(decoration => {
-            setInterval(() => {
-                decoration.classList.add('pulse');
-                setTimeout(() => {
-                    decoration.classList.remove('pulse');
-                }, 1000);
-            }, 5000);
-        });
-    });
-</script>
-}

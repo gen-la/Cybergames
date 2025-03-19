@@ -4,12 +4,12 @@
     ViewData["Title"] = $"{Model.CategoryName} Games";
 }
 
-<div class="cyberpunk-container container py-5">
+<div class="cyberpunk-container container mt-5">
     <div class="cyber-header">
-        <h1 class="text-center mb-3 glitch" data-text="@Model.CategoryName Games">@Model.CategoryName Games</h1>
-        <div class="cyber-line mb-5"></div>
+        <h1 class="display-5 glitch text-light" data-text="@Model.CategoryName Games">@Model.CategoryName Games</h1>
+        <div class="cyber-line "></div>
     </div>
-
+    
     @if (!Model.Games.Any())
     {
         <div class="cyber-card">

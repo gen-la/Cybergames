@@ -4,8 +4,11 @@
 ViewData["Title"] = "Checkout";
 }
 
-<h2>Checkout</h2>
-
+<div class="cyberpunk-container container mt-5">
+    <div class="cyber-header">
+        <h1 class="display-5 glitch" data-text="Checkout">Checkout</h1>
+        <div class="cyber-line"></div>
+    </div>
 <p>Antal spel i kassan: @ViewData["CartItemCount"]</p> <!-- Visa antalet spel här -->
 
 @if (Model.ShowConfirmationMessage)
@@ -37,6 +40,8 @@ else
         <label for="country">Land</label>
         <input type="text" class="form-control" id="country" name="country" required>
     </div>
+    <br/>
     <button type="submit" class="btn btn-primary">Place Order</button>
 </form>
 }
+</div>
