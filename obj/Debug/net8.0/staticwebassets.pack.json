@@ -5,10 +5,6 @@
       "PackagePath": "staticwebassets/Cybergames.bundle.scp.css"
     },
     {
-      "Id": "/Users/mustafaalnaser/Desktop/cybergames/Cybergames/wwwroot/css/GameDetalis.css",
-      "PackagePath": "staticwebassets/css/GameDetalis.css"
-    },
-    {
       "Id": "/Users/mustafaalnaser/Desktop/cybergames/Cybergames/wwwroot/css/index.css",
       "PackagePath": "staticwebassets/css/index.css"
     },
