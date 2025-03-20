@@ -3,11 +3,11 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Cybergames.Pages
 {
-    public class PrivacyModel : PageModel
+    public class ArcadeModel : PageModel
     {
-        private readonly ILogger<PrivacyModel> _logger;
+        private readonly ILogger<ArcadeModel> _logger;
 
-        public PrivacyModel(ILogger<PrivacyModel> logger)
+        public ArcadeModel(ILogger<ArcadeModel> logger)
         {
             _logger = logger;
         }
