@@ -12,8 +12,8 @@ public class Contact : PageModel
 
     public IActionResult OnPost()
     {
-        // Hantera POST-förfrågan (skicka formuläret)
-        // Här kan du lägga till logik för att skicka e-post eller spara meddelandet i en databas
+        // (skicka formuläret)
+        // 
         return RedirectToPage("/ContactConfirmation");
     }
 }

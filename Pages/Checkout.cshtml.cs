@@ -7,15 +7,16 @@ using Cybergames.Models;
 
 public class CheckoutModel : PageModel
 {
-    private readonly CartService _cartService;
-    private readonly GameService _gameService;
-    private readonly UserManager<ApplicationUser> _userManager;
+    private readonly CartService _cartService; // Tjänst för att hantera kundvagnen
+    private readonly GameService _gameService; // Tjänst för att hantera spelköp
+    private readonly UserManager<ApplicationUser> _userManager; // Hanterar användarinformation
 
-    public ShoppingCart Cart { get; set; } // Property for the cart
+    public ShoppingCart Cart { get; set; } // Kundvagnsobjektet
 
     [BindProperty]
-    public bool ShowConfirmationMessage { get; set; } = false;
+    public bool ShowConfirmationMessage { get; set; } = false; // Indikerar om bekräftelsemeddelandet ska visas
 
+    // Konstruktor som injicerar nödvändiga tjänster
     public CheckoutModel(
         CartService cartService,
         GameService gameService,
@@ -26,42 +27,44 @@ public class CheckoutModel : PageModel
         _userManager = userManager;
     }
 
+    // Körs när sidan laddas
     public void OnGet()
     {
-        Cart = _cartService.GetCart(); // Get the cart when the page loads
-        ViewData["CartItemCount"] = Cart.Items.Sum(item => item.Quantity); // Send the number of games to the view
+        Cart = _cartService.GetCart(); // Hämtar kundvagnen
+        ViewData["CartItemCount"] = Cart.Items.Sum(item => item.Quantity); // Uppdaterar antal spel i vyn
     }
 
+    // Hanterar köp av varor i kundvagnen
     public async Task<IActionResult> OnPostAsync()
     {
-        // Get the current user
+        // Hämtar den inloggade användaren
         var user = await _userManager.GetUserAsync(User);
         if (user == null)
         {
-            return RedirectToPage("/Account/Login"); // Redirect to login if the user is not authenticated
+            return RedirectToPage("/Account/Login"); // Omdirigerar till inloggningssidan om användaren inte är inloggad
         }
 
-        // Get the cart
+        // Hämtar kundvagnen
         var cart = _cartService.GetCart();
 
-        // Add each game in the cart to the user's account
+        // Lägger till varje spel i användarens bibliotek
         foreach (var item in cart.Items)
         {
-            await _gameService.AddGameToUserAsync(item.Id, User); // Use item.Id (or item.GameId if you renamed it)
+            await _gameService.AddGameToUserAsync(item.Id, User); // Lägger till spelet för användaren
         }
 
-        // Clear the cart
-        cart.Clear(); // Empty the cart
-        _cartService.SaveCart(cart); // Save the updated (empty) cart
+        // Tömmer kundvagnen efter genomfört köp
+        cart.Clear(); 
+        _cartService.SaveCart(cart); // Sparar den uppdaterade (tömda) kundvagnen
 
-        // Show the confirmation message
+        // Visar bekräftelsemeddelandet
         ShowConfirmationMessage = true;
 
-        // Update the cart to show 0 games after it has been cleared
+        // Uppdaterar kundvagnen för att visa att den är tom
         Cart = _cartService.GetCart();
         ViewData["CartItemCount"] = Cart.Items.Sum(item => item.Quantity);
 
-        // Return the same page to show the message
+        // Returnerar samma sida för att visa bekräftelsen
         return Page();
     }
 }
