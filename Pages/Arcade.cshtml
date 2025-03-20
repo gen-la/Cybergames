@@ -5,7 +5,7 @@
 }
 <h1>@ViewData["Title"]</h1>
 
-<p>Use this page to detail your site's privacy policy.</p>
+<p>Use Left and Right arrows to control the paddle, start game with CTRL</p>
 
 
     <canvas width="400" height="500" id="game"></canvas>
@@ -212,10 +212,10 @@
                 paddle.dx = 3;
             }
 
-            // up key
-            // if they ball is not moving, we can launch the ball using the up key. ball
+            // ctrl key
+            // if they ball is not moving, we can launch the ball using the ctrl key. ball
             // will move towards the bottom right to start
-            if (ball.dx === 0 && ball.dy === 0 && e.which === 38) {
+            if (ball.dx === 0 && ball.dy === 0 && e.which === 17) {
                 ball.dx = ball.speed;
                 ball.dy = ball.speed;
             }
