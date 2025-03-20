@@ -7,56 +7,122 @@
 
 <p>Use Left and Right arrows to control the paddle, start game with CTRL</p>
 
-
+<div class="game-container">
+    <div class="score-display">Score: <span id="score">0</span></div>
+    <div class="lives-display">Lives: <span id="lives">3</span></div>
     <canvas width="400" height="500" id="game"></canvas>
-    <script>
-        const canvas = document.getElementById('game');
-        const context = canvas.getContext('2d');
+</div>
 
-        // each row is 14 bricks long. the level consists of 6 blank rows then 8 rows
-        // of 4 colors: red, orange, green, and yellow
-        const level1 = [
-            [],
-            [],
-            [],
-            [],
-            [],
-            [],
-            ['R', 'R', 'R', 'R', 'R', 'R', 'R', 'R', 'R', 'R', 'R', 'R', 'R', 'R'],
-            ['R', 'R', 'R', 'R', 'R', 'R', 'R', 'R', 'R', 'R', 'R', 'R', 'R', 'R'],
-            ['O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O'],
-            ['O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O'],
-            ['G', 'G', 'G', 'G', 'G', 'G', 'G', 'G', 'G', 'G', 'G', 'G', 'G', 'G'],
-            ['G', 'G', 'G', 'G', 'G', 'G', 'G', 'G', 'G', 'G', 'G', 'G', 'G', 'G'],
-            ['Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y'],
-            ['Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y']
-        ];
+<style>
+    .game-container {
+        position: relative;
+        display: inline-block;
+    }
 
-        // create a mapping between color short code (R, O, G, Y) and color name
-        const colorMap = {
-            'R': 'red',
-            'O': 'orange',
-            'G': 'green',
-            'Y': 'yellow'
-        };
+    .score-display {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        background-color: rgba(0, 0, 0, 0.7);
+        color: white;
+        padding: 5px 10px;
+        border-radius: 5px;
+        font-weight: bold;
+        z-index: 10;
+    }
 
-        // use a 2px gap between each brick
-        const brickGap = 2;
-        const brickWidth = 25;
-        const brickHeight = 12;
+    .lives-display {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        background-color: rgba(0, 0, 0, 0.7);
+        color: white;
+        padding: 5px 10px;
+        border-radius: 5px;
+        font-weight: bold;
+        z-index: 10;
+    }
+</style>
 
-        // the wall width takes up the remaining space of the canvas width. with 14 bricks
-        // and 13 2px gaps between them, thats: 400 - (14 * 25 + 2 * 13) = 24px. so each
-        // wall will be 12px
-        const wallSize = 12;
-        const bricks = [];
+<script>
+    const canvas = document.getElementById('game');
+    const context = canvas.getContext('2d');
+    const scoreElement = document.getElementById('score');
+    const livesElement = document.getElementById('lives');
 
-        // create the level by looping over each row and column in the level1 array
-        // and creating an object with the bricks position (x, y) and color
-        for (let row = 0; row < level1.length; row++) {
-            for (let col = 0; col < level1[row].length; col++) {
-                const colorCode = level1[row][col];
+    //ljusgrå färg för bollen och texten
+    const lightGreyColor = '#D3D3D3';
 
+    //poäng och liv
+    let score = 0;
+    let lives = 3;
+    let gameOver = false;
+
+    //uppdatera poängen
+    function updateScore(points) {
+        score += points;
+        scoreElement.textContent = score;
+    }
+
+    //uppdatera liven
+    function updateLives(change) {
+        lives += change;
+        livesElement.textContent = lives;
+    }
+
+    // varje rad är 14 brickor. Nivån består av 6 tomma rader och 8 rader
+    // med 4 färger: röd, orange, grön och gul
+    const level1 = [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        ['R', 'R', 'R', 'R', 'R', 'R', 'R', 'R', 'R', 'R', 'R', 'R', 'R', 'R'],
+        ['R', 'R', 'R', 'R', 'R', 'R', 'R', 'R', 'R', 'R', 'R', 'R', 'R', 'R'],
+        ['O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O'],
+        ['O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O'],
+        ['G', 'G', 'G', 'G', 'G', 'G', 'G', 'G', 'G', 'G', 'G', 'G', 'G', 'G'],
+        ['G', 'G', 'G', 'G', 'G', 'G', 'G', 'G', 'G', 'G', 'G', 'G', 'G', 'G'],
+        ['Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y'],
+        ['Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y']
+    ];
+
+    //mappning mellan färgkod (R, O, G, Y) och färgnamn
+    const colorMap = {
+        'R': 'red',
+        'O': 'orange',
+        'G': 'green',
+        'Y': 'yellow'
+    };
+
+    //poäng för varje färg
+    const pointsMap = {
+        'red': 7,
+        'orange': 5,
+        'green': 3,
+        'yellow': 1
+    };
+
+    //2px mellanrum mellan varje bricka
+    const brickGap = 2;
+    const brickWidth = 25;
+    const brickHeight = 12;
+
+    //väggens bredd tar upp återstående utrymme av canvas-bredden. Med 14 brickor
+    //och 2px mellanrum mellan dem, det är: 400 - (14 * 25 + 2 * 13) = 24px. Så varje
+    //vägg kommer att vara 12px
+    const wallSize = 12;
+    const bricks = [];
+
+    //rita nivån genom att loopa genom varje rad och kolumn i level1-arrayen
+    //och skapa objekt med brickposition (x, y) och färg
+    for (let row = 0; row < level1.length; row++) {
+        for (let col = 0; col < level1[row].length; col++) {
+            const colorCode = level1[row][col];
+
+            if (colorCode) {
                 bricks.push({
                     x: wallSize + (brickWidth + brickGap) * col,
                     y: wallSize + (brickHeight + brickGap) * row,
@@ -66,168 +132,243 @@
                 });
             }
         }
+    }
 
-        const paddle = {
-            // place the paddle horizontally in the middle of the screen
-            x: canvas.width / 2 - brickWidth / 2,
-            y: 440,
-            width: 40,
-            height: brickHeight,
+    //paddle (spelaren)
+    const paddle = {
+        //placera horisontellt i mitten av skärmen
+        x: canvas.width / 2 - brickWidth / 2,
+        y: 440,
+        width: 40,
+        height: brickHeight,
 
-            // paddle x velocity
-            dx: 0
-        };
+        //paddle x-hastighet
+        dx: 0
+    };
 
-        const ball = {
-            x: 130,
-            y: 260,
-            width: 10,
-            height: 10,
+    //bollen
+    const ball = {
+        x: 130,
+        y: 260,
+        width: 10,
+        height: 10,
 
-            // how fast the ball should go in either the x or y direction
-            speed: 2,
+        //hur snabbt bollen rör sig i x- eller y-riktningen
+        speed: 2,
 
-            // ball velocity
-            dx: 0,
-            dy: 0
-        };
+        //bollens hastighet
+        dx: 0,
+        dy: 0
+    };
 
-        // check for collision between two objects using axis-aligned bounding box (AABB)
-        // see https://developer.mozilla.org/en-US/docs/Games/Techniques/2D_collision_detection
-        function collides(obj1, obj2) {
-            return obj1.x < obj2.x + obj2.width &&
-                obj1.x + obj1.width > obj2.x &&
-                obj1.y < obj2.y + obj2.height &&
-                obj1.y + obj1.height > obj2.y;
-        }
+    //funktion för att återställa bollen
+    function resetBall() {
+        ball.x = 130;
+        ball.y = 260;
+        ball.dx = 0;
+        ball.dy = 0;
+    }
 
-        // game loop
-        function loop() {
-            requestAnimationFrame(loop);
-            context.clearRect(0, 0, canvas.width, canvas.height);
+    //funktion för att återställa spelet
+    function resetGame() {
+        //reset poäng och liv
+        score = 0;
+        lives = 3;
+        gameOver = false;
+        updateScore(0);
+        updateLives(0);
 
-            // move paddle by it's velocity
-            paddle.x += paddle.dx;
+        resetBall();
 
-            // prevent paddle from going through walls
-            if (paddle.x < wallSize) {
-                paddle.x = wallSize
-            }
-            else if (paddle.x + brickWidth > canvas.width - wallSize) {
-                paddle.x = canvas.width - wallSize - brickWidth;
-            }
+        //rita ut brickor
+        bricks.length = 0;
+        for (let row = 0; row < level1.length; row++) {
+            for (let col = 0; col < level1[row].length; col++) {
+                const colorCode = level1[row][col];
 
-            // move ball by it's velocity
-            ball.x += ball.dx;
-            ball.y += ball.dy;
-
-            // prevent ball from going through walls by changing its velocity
-            // left & right walls
-            if (ball.x < wallSize) {
-                ball.x = wallSize;
-                ball.dx *= -1;
-            }
-            else if (ball.x + ball.width > canvas.width - wallSize) {
-                ball.x = canvas.width - wallSize - ball.width;
-                ball.dx *= -1;
-            }
-            // top wall
-            if (ball.y < wallSize) {
-                ball.y = wallSize;
-                ball.dy *= -1;
-            }
-
-            // reset ball if it goes below the screen
-            if (ball.y > canvas.height) {
-                ball.x = 130;
-                ball.y = 260;
-                ball.dx = 0;
-                ball.dy = 0;
-            }
-
-            // check to see if ball collides with paddle. if they do change y velocity
-            if (collides(ball, paddle)) {
-                ball.dy *= -1;
-
-                // move ball above the paddle otherwise the collision will happen again
-                // in the next frame
-                ball.y = paddle.y - ball.height;
-            }
-
-            // check to see if ball collides with a brick. if it does, remove the brick
-            // and change the ball velocity based on the side the brick was hit on
-            for (let i = 0; i < bricks.length; i++) {
-                const brick = bricks[i];
-
-                if (collides(ball, brick)) {
-                    // remove brick from the bricks array
-                    bricks.splice(i, 1);
-
-                    // ball is above or below the brick, change y velocity
-                    // account for the balls speed since it will be inside the brick when it
-                    // collides
-                    if (ball.y + ball.height - ball.speed <= brick.y ||
-                        ball.y >= brick.y + brick.height - ball.speed) {
-                        ball.dy *= -1;
-                    }
-                    // ball is on either side of the brick, change x velocity
-                    else {
-                        ball.dx *= -1;
-                    }
-
-                    break;
+                if (colorCode) {
+                    bricks.push({
+                        x: wallSize + (brickWidth + brickGap) * col,
+                        y: wallSize + (brickHeight + brickGap) * row,
+                        color: colorMap[colorCode],
+                        width: brickWidth,
+                        height: brickHeight
+                    });
                 }
             }
+        }
+    }
 
-            // draw walls
-            context.fillStyle = 'lightgrey';
-            context.fillRect(0, 0, canvas.width, wallSize);
-            context.fillRect(0, 0, wallSize, canvas.height);
-            context.fillRect(canvas.width - wallSize, 0, wallSize, canvas.height);
+    //kontrollera kollision mellan två objekt med hjälp av axis-aligned bounding box (AABB)
+    //se https://developer.mozilla.org/en-US/docs/Games/Techniques/2D_collision_detection
+    function collides(obj1, obj2) {
+        return obj1.x < obj2.x + obj2.width &&
+            obj1.x + obj1.width > obj2.x &&
+            obj1.y < obj2.y + obj2.height &&
+            obj1.y + obj1.height > obj2.y;
+    }
 
-            // draw ball if it's moving
-            if (ball.dx || ball.dy) {
-                context.fillRect(ball.x, ball.y, ball.width, ball.height);
-            }
+    //spelloop
+    function loop() {
+        requestAnimationFrame(loop);
+        context.clearRect(0, 0, canvas.width, canvas.height);
 
-            // draw bricks
-            bricks.forEach(function (brick) {
-                context.fillStyle = brick.color;
-                context.fillRect(brick.x, brick.y, brick.width, brick.height);
-            });
+        //move da paddle
+        paddle.x += paddle.dx;
 
-            // draw paddle
-            context.fillStyle = 'cyan';
-            context.fillRect(paddle.x, paddle.y, paddle.width, paddle.height);
+        //hindra da paddle från att gå genom väggar
+        if (paddle.x < wallSize) {
+            paddle.x = wallSize
+        }
+        else if (paddle.x + brickWidth > canvas.width - wallSize) {
+            paddle.x = canvas.width - wallSize - brickWidth;
         }
 
-        // listen to keyboard events to move the paddle
-        document.addEventListener('keydown', function (e) {
-            // left arrow key
-            if (e.which === 37) {
-                paddle.dx = -3;
-            }
-            // right arrow key
-            else if (e.which === 39) {
-                paddle.dx = 3;
-            }
+        //move da ball
+        ball.x += ball.dx;
+        ball.y += ball.dy;
 
-            // ctrl key
-            // if they ball is not moving, we can launch the ball using the ctrl key. ball
-            // will move towards the bottom right to start
-            if (ball.dx === 0 && ball.dy === 0 && e.which === 17) {
+        //hindra bollen från att gå genom väggar genom att ändra dess hastighet
+        //vänster och höger-vägg
+        if (ball.x < wallSize) {
+            ball.x = wallSize;
+            ball.dx *= -1;
+        }
+        else if (ball.x + ball.width > canvas.width - wallSize) {
+            ball.x = canvas.width - wallSize - ball.width;
+            ball.dx *= -1;
+        }
+        //övre vägg-toppen av spelplan
+        if (ball.y < wallSize) {
+            ball.y = wallSize;
+            ball.dy *= -1;
+        }
+
+        //återställ bollen om den går under skärmen och ta bort ett liv
+        if (ball.y > canvas.height) {
+            updateLives(-1);
+
+            if (lives <= 0) {
+                //GAME OVER
+                gameOver = true;
+            } else {
+                //återställ bollens position men fortsätt spelet
+                resetBall();
+            }
+        }
+
+        //om bollen kolliderar med paddeln, ändra y-hastighet
+        if (collides(ball, paddle)) {
+            ball.dy *= -1;
+
+            //flytta bollen ovanför paddeln
+            ball.y = paddle.y - ball.height;
+        }
+
+        //om bollen kolliderar med en bricka, ta bort brickan
+        //och ändra bollens hastighet baserat på vilken sida brickan träffades på
+        for (let i = 0; i < bricks.length; i++) {
+            const brick = bricks[i];
+
+            if (collides(ball, brick)) {
+                //ta bort brickan
+                bricks.splice(i, 1);
+
+                //lägg till poäng baserat på brickans färg
+                updateScore(pointsMap[brick.color]);
+
+                //boll ovanför eller under brickan, ändra y-hastighet
+                if (ball.y + ball.height - ball.speed <= brick.y ||
+                    ball.y >= brick.y + brick.height - ball.speed) {
+                    ball.dy *= -1;
+                }
+                //boll på sidan av brickan, ändra x-hastighet
+                else {
+                    ball.dx *= -1;
+                }
+
+                break;
+            }
+        }
+
+        //rita ut väggar
+        context.fillStyle = 'lightgrey';
+        context.fillRect(0, 0, canvas.width, wallSize);
+        context.fillRect(0, 0, wallSize, canvas.height);
+        context.fillRect(canvas.width - wallSize, 0, wallSize, canvas.height);
+
+        //rita ut bollen om den rör sig eller spelet inte är slut
+        if ((ball.dx || ball.dy) && !gameOver) {
+            context.fillStyle = lightGreyColor;
+            context.fillRect(ball.x, ball.y, ball.width, ball.height);
+        }
+
+        //rita ut brickor
+        bricks.forEach(function (brick) {
+            context.fillStyle = brick.color;
+            context.fillRect(brick.x, brick.y, brick.width, brick.height);
+        });
+
+        //rita ut paddeln
+        context.fillStyle = 'cyan';
+        context.fillRect(paddle.x, paddle.y, paddle.width, paddle.height);
+
+        //kontrollera om alla brickor är borta
+        if (bricks.length === 0) {
+            //visa meddelande om spelaren vunnit
+            context.fillStyle = lightGreyColor;
+            context.font = '20px Arial';
+            context.textAlign = 'center';
+            context.fillText('Victory! Final Score: ' + score, canvas.width / 2, canvas.height / 2);
+
+            //stoppa bollen
+            ball.dx = 0;
+            ball.dy = 0;
+        }
+
+        //om spelet är slut
+        if (gameOver) {
+            //visa GAME OVER
+            context.fillStyle = lightGreyColor;
+            context.font = '20px Arial';
+            context.textAlign = 'center';
+            context.fillText('Game Over! Final Score: ' + score, canvas.width / 2, canvas.height / 2);
+            context.fillText('Press CTRL to play again', canvas.width / 2, canvas.height / 2 + 30);
+        }
+    }
+
+    //lyssna på tangentbordshändelser för att flytta paddeln
+    document.addEventListener('keydown', function (e) {
+        //vänster piltangent
+        if (e.which === 37) {
+            paddle.dx = -3;
+        }
+        //höger piltangent
+        else if (e.which === 39) {
+            paddle.dx = 3;
+        }
+
+        //CTRL-tangent
+        if (e.which === 17) {
+            //om spelet är slut, återställ spelet
+            if (gameOver) {
+                resetGame();
+            }
+            //om bollen inte rör sig, starta den
+            else if (ball.dx === 0 && ball.dy === 0) {
                 ball.dx = ball.speed;
                 ball.dy = ball.speed;
             }
-        });
+        }
+    });
 
-        // listen to keyboard events to stop the paddle if key is released
-        document.addEventListener('keyup', function (e) {
-            if (e.which === 37 || e.which === 39) {
-                paddle.dx = 0;
-            }
-        });
+    //lyssna på tangentbordshändelser för att stoppa paddeln om tangenten släpps
+    document.addEventListener('keyup', function (e) {
+        if (e.which === 37 || e.which === 39) {
+            paddle.dx = 0;
+        }
+    });
 
-        // start the game
-        requestAnimationFrame(loop);
-    </script>
+    //starta spelet
+    requestAnimationFrame(loop);
+</script>
