@@ -107,3 +107,30 @@ ViewData["Title"] = "Home page";
     </div>
 </section>
 
+<!-- Testimonials Section -->
+<section class="testimonials py-5 cyberpunk-container">
+    <div class="container">
+        <div class="cyber-header">
+            <h1 class="text-center mb-3 glitch" data-text="Testimonials">Testimonials</h1>
+            <div class="cyber-line mb-5"></div>
+        </div>
+
+        <div class="row">
+            @foreach (var game in Model.Games.Take(3))
+            {
+            <div class="col-md-4 mb-4">
+                <div class="testimonial-card cyber-testimonial-card">
+                    <div class="testimonial-card-body">
+                        <p class="testimonial-card-text">"@game.Title is an absolute masterpiece! The gameplay and graphics are mind-blowing."</p>
+                        <div class="testimonial-card-footer">
+                            <span class="testimonial-card-author">- @game.Category Enthusiast</span>
+                        </div>
+                    </div>
+                    <div class="cyber-card-glitch"></div>
+                </div>
+            </div>
+            }
+        </div>
+    </div>
+</section>
+

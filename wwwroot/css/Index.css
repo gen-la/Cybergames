@@ -231,6 +231,10 @@
     font-weight: 600;
 }
 
+.testimonials {
+    margin-top: 2rem;
+}
+
 /* Hero Section */
 .hero {
     height: 85vh;
