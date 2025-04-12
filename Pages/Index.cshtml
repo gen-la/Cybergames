@@ -4,6 +4,69 @@
 ViewData["Title"] = "Home page";
 }
 
+<style>
+    /* game cards on mobile */
+    @media (max-width: 767px) {
+        /* featured game cards */
+        .game-card.cyber-game-grid-card {
+            max-width: 280px;
+            margin: 0 auto 20px;
+            transform: scale(0.9);
+        }
+        
+        .game-card-image {
+            max-height: 200px;
+            object-fit: cover;
+        }
+        
+        .game-card-title {
+            font-size: 1.2rem;
+        }
+        
+        .game-card-body {
+            padding: 10px;
+        }
+        
+        .game-card-footer {
+            flex-wrap: wrap;
+            gap: 5px;
+        }
+        
+        /* trending game cards */
+        .trending-game-card {
+            width: 140px;
+            height: 210px;
+        }
+        
+        .trending-game-card img {
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .trending-game-overlay h3 {
+            font-size: 1rem;
+        }
+        
+        .cyber-button-sm {
+            padding: 5px 10px;
+            font-size: 0.8rem;
+        }
+        
+        .cyber-input-group {
+            flex-direction: column;
+        }
+        
+        .cyber-input-group .form-control {
+            width: 100%;
+            margin-bottom: 5px;
+        }
+        
+        .cyber-input-group .btn {
+            width: 100%;
+        }
+    }
+</style>
+
 <!-- Hero Section with Video Background -->
 <section class="hero d-flex align-items-center position-relative overflow-hidden">
     <!-- Video Background -->
@@ -133,4 +196,3 @@ ViewData["Title"] = "Home page";
         </div>
     </div>
 </section>
-
