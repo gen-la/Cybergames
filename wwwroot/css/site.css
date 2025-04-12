@@ -749,4 +749,124 @@ footer .lc-block svg:hover {
 }
 
 
+/* Lägg till dessa stilar i din site.css-fil */
 
+/* Surfplatta och mobil navbar stilar */
+@media (max-width: 991.98px) {
+  /* Förbättra hamburgermenyn */
+  .navbar-toggler {
+    border: 1px solid var(--cyber-primary);
+    padding: 0.4rem 0.6rem;
+    transition: var(--transition);
+  }
+
+  .navbar-toggler:hover {
+    background-color: rgba(0, 229, 255, 0.1);
+    box-shadow: 0 0 10px rgba(0, 229, 255, 0.3);
+  }
+
+  .navbar-toggler:focus {
+    box-shadow: 0 0 0 0.2rem rgba(0, 229, 255, 0.25);
+  }
+
+  /* Förbättra dropdown-menyn */
+  .navbar-collapse {
+    margin-top: 0.5rem;
+    padding: 0.5rem;
+    border-radius: 8px;
+    background: rgba(10, 10, 42, 0.95);
+    border: 1px solid rgba(0, 229, 255, 0.2);
+  }
+
+  /* Justera kategorier dropdown */
+  .dropdown-menu {
+    width: 100% !important;
+    max-width: none !important;
+    background: rgba(5, 5, 24, 0.95);
+    border: 1px solid rgba(0, 229, 255, 0.2);
+    margin-top: 0.25rem;
+    margin-bottom: 0.25rem;
+  }
+
+  /* Förbättra mellanrum i dropdown */
+  .dropdown-menu .row {
+    margin: 0;
+  }
+
+  .dropdown-menu .col-lg-4 {
+    padding: 0.25rem;
+  }
+
+  .dropdown-item {
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+  }
+
+  .dropdown-item:hover {
+    background-color: rgba(0, 229, 255, 0.1);
+  }
+
+  /* Justera varukorgsikonen */
+  .cart-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0.5rem 0;
+  }
+
+  /* Centrera inloggningsdelen */
+  .navbar-nav {
+    margin-bottom: 0.5rem;
+  }
+}
+
+/* Specifika stilar för surfplatta */
+@media (min-width: 768px) and (max-width: 991.98px) {
+  /* Justera navbar padding för surfplattor */
+  .navbar {
+    padding: 0.75rem 0;
+  }
+
+  /* Förbättra dropdown-menyn för surfplattor */
+  .navbar-collapse {
+    max-height: 80vh;
+    overflow-y: auto;
+  }
+
+  /* Förbättra kategorier dropdown för surfplattor */
+  .dropdown-menu {
+    max-height: 60vh;
+    overflow-y: auto;
+  }
+
+  /* Justera dropdown-items för surfplattor */
+  .dropdown-item {
+    padding: 0.6rem 1rem;
+  }
+}
+
+/* Förbättra varukorgsikonen */
+.cart-icon {
+  position: relative;
+  color: #ffffff;
+  font-size: 1.3rem;
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.cart-icon:hover {
+  color: var(--cyber-primary);
+  transform: translateY(-2px);
+}
+
+.cart-count {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  padding: 2px 6px;
+  font-size: 0.7rem;
+  line-height: 1;
+}
