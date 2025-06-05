@@ -5,7 +5,11 @@
     ViewData["Title"] = "Shopping Cart";
 }
 
-<h2>Shopping Cart</h2>
+<div class="cyberpunk-container container mt-5">
+    <div class="cyber-header">
+        <h1 class="display-4 glitch" data-text="Shopping Cart">Shopping Cart</h1>
+        <div class="cyber-line"></div>
+    </div>
 
 @if (Model.Cart.Items.Any())
 {
@@ -24,9 +28,9 @@
         {
             <tr>
                 <td>@item.Name</td>
-                <td>$@((int)item.Price)</td> <!-- Remove decimals -->
+                <td>$@((int)item.Price)</td> 
                 <td>@item.Quantity</td>
-                <td>$@((int)(item.Price * item.Quantity))</td> <!-- Remove decimals -->
+                <td>$@((int)(item.Price * item.Quantity))</td>
                 <td>
                     <form method="post" asp-page-handler="RemoveFromCart">
                         <input type="hidden" name="itemId" value="@item.Id" />
@@ -37,10 +41,11 @@
         }
         </tbody>
     </table>
-    <h4>Total: $@((int)Model.Cart.CalculateTotal())</h4> <!-- Remove decimals -->
+    <h4>Total: $@((int)Model.Cart.CalculateTotal())</h4> 
     <a asp-page="/Checkout" class="btn btn-primary">Proceed to Checkout</a>
 }
 else
 {
     <p>Your cart is empty.</p>
 }
+</div>

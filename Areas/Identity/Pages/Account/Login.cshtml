@@ -1,45 +1,67 @@
-﻿    @page
+﻿@page
 @model LoginModel
 
 @{
-    ViewData["Title"] = "Log in";
+ViewData["Title"] = "Log in";
 }
 
-<div class="row">
-    <div class="col-md-4 mx-auto rounded border p-3">
-        <section>  
-            <h2 class="text-center mb-3">Log in </h2>
-            <hr />
-            <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
-            <form id="account" method="post">
-                <div class="form-floating mb-3">
-                    <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com"/>
-                    <label asp-for="Input.Email" class="form-label">Email</label>
-                    <span asp-validation-for="Input.Email" class="text-danger"></span>
-                </div>
-                <div class="form-floating mb-3">
-                    <input asp-for="Input.Password" class="form-control" autocomplete="current-password" aria-required="true" placeholder="password"/>
-                    <label asp-for="Input.Password" class="form-label">Password</label>
-                    <span asp-validation-for="Input.Password" class="text-danger"></span>
-                </div>
-                <div class="checkbox mb-3">
-                    <label asp-for="Input.RememberMe" class="form-label">
-                        <input class="form-check-input" asp-for="Input.RememberMe"/>
-                        @Html.DisplayNameFor(m => m.Input.RememberMe)
-                    </label>
-                </div>
-                <div class="row mb-3">
-                    <div class="col d-grid">
-                        <button type="submit" class="btn-primary">Log in</button>
-                    </div>
-                    <div class="col d-grid">
-                        <a class="btn btn-outline-primary" href="/" role="button">Cancel</a>
-                    </div>
-                </div>
-                <div>
-                    <a class="btn btn-link" id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
-                </div>
-            </form>
-        </section>
+<div class="cyberpunk-container container py-5">
+    <div class="cyber-header">
+        <h1 class="text-center glitch" data-text="Log in">Log in</h1>
+        <div class="cyber-line"></div>
     </div>
+
+    <div class="row justify-content-center">
+        <div class="col-md-4 cyber-card p-4">
+            <section>
+                <h2 class="text-center cyber-text">Welcome Back</h2>
+                <hr class="cyber-line" />
+
+                <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+
+                <form id="account" method="post">
+                    <div class="form-floating mb-3">
+                        <input asp-for="Input.Email" class="form-control cyber-input" autocomplete="username" aria-required="true" placeholder="name@example.com"/>
+                        <label asp-for="Input.Email" class="cyber-label">Email</label>
+                        <span asp-validation-for="Input.Email" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input asp-for="Input.Password" class="form-control cyber-input" autocomplete="current-password" aria-required="true" placeholder="password"/>
+                        <label asp-for="Input.Password" class="cyber-label">Password</label>
+                        <span asp-validation-for="Input.Password" class="text-danger"></span>
+                    </div>
+
+                    <div class="checkbox mb-3">
+                        <label asp-for="Input.RememberMe" class="cyber-label">
+                            <input class="form-check-input cyber-checkbox" asp-for="Input.RememberMe"/>
+                            @Html.DisplayNameFor(m => m.Input.RememberMe)
+                        </label>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col d-grid">
+                            <button type="submit" class="btn cyber-button btn-primary w-100">
+                                <span class="text-white">LOG IN</span>
+                                <div class="cyber-button-border"></div>
+                            </button>
+                        </div>
+                        <div class="col d-grid">
+                            <a type="submit" class="btn cyber-button btn-primary w-100" href="/" role="button">
+                                <span class="text-white">CANCEL</span>
+                                <div class="cyber-button-border"></div>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="text-center">
+                        <a class="btn cyber-link text-white" id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
+                    </div>
+                </form>
+            </section>
+        </div>
+    </div>
+
+    <div class="cyber-decoration top-right"></div>
+    <div class="cyber-decoration bottom-left"></div>
 </div>
