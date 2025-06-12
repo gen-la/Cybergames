@@ -1,0 +1,348 @@
+-- MySQL dump 10.13  Distrib 8.0.42, for Linux (x86_64)
+--
+-- Host: mysql1-1.hostek.se    Database: dws127433
+-- ------------------------------------------------------
+-- Server version	11.4.7-MariaDB-deb12
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8mb4 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `AspNetRoleClaims`
+--
+
+DROP TABLE IF EXISTS `AspNetRoleClaims`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `AspNetRoleClaims` (
+  `Id` int(11) NOT NULL AUTO_INCREMENT,
+  `RoleId` varchar(255) NOT NULL,
+  `ClaimType` longtext DEFAULT NULL,
+  `ClaimValue` longtext DEFAULT NULL,
+  PRIMARY KEY (`Id`),
+  KEY `IX_AspNetRoleClaims_RoleId` (`RoleId`),
+  CONSTRAINT `FK_AspNetRoleClaims_AspNetRoles_RoleId` FOREIGN KEY (`RoleId`) REFERENCES `AspNetRoles` (`Id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `AspNetRoleClaims`
+--
+
+LOCK TABLES `AspNetRoleClaims` WRITE;
+/*!40000 ALTER TABLE `AspNetRoleClaims` DISABLE KEYS */;
+/*!40000 ALTER TABLE `AspNetRoleClaims` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `AspNetRoles`
+--
+
+DROP TABLE IF EXISTS `AspNetRoles`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `AspNetRoles` (
+  `Id` varchar(255) NOT NULL,
+  `Name` varchar(256) DEFAULT NULL,
+  `NormalizedName` varchar(256) DEFAULT NULL,
+  `ConcurrencyStamp` longtext DEFAULT NULL,
+  PRIMARY KEY (`Id`),
+  UNIQUE KEY `RoleNameIndex` (`NormalizedName`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `AspNetRoles`
+--
+
+LOCK TABLES `AspNetRoles` WRITE;
+/*!40000 ALTER TABLE `AspNetRoles` DISABLE KEYS */;
+INSERT INTO `AspNetRoles` VALUES ('0ad6fd0f-d10f-450e-a858-74d316d8bbbe','admin','ADMIN',NULL),('429abeaf-9121-4ff3-b8e8-7bb3f8be0f56','client','CLIENT',NULL),('535d1bf7-51af-498b-a97a-0a12eb7d4e36','User','USER',NULL);
+/*!40000 ALTER TABLE `AspNetRoles` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `AspNetUserClaims`
+--
+
+DROP TABLE IF EXISTS `AspNetUserClaims`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `AspNetUserClaims` (
+  `Id` int(11) NOT NULL AUTO_INCREMENT,
+  `UserId` varchar(255) NOT NULL,
+  `ClaimType` longtext DEFAULT NULL,
+  `ClaimValue` longtext DEFAULT NULL,
+  PRIMARY KEY (`Id`),
+  KEY `IX_AspNetUserClaims_UserId` (`UserId`),
+  CONSTRAINT `FK_AspNetUserClaims_AspNetUsers_UserId` FOREIGN KEY (`UserId`) REFERENCES `AspNetUsers` (`Id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `AspNetUserClaims`
+--
+
+LOCK TABLES `AspNetUserClaims` WRITE;
+/*!40000 ALTER TABLE `AspNetUserClaims` DISABLE KEYS */;
+INSERT INTO `AspNetUserClaims` VALUES (1,'f9514e39-8b49-4524-bceb-c90e5e4f8920','http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress','admin@admin.com');
+/*!40000 ALTER TABLE `AspNetUserClaims` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `AspNetUserLogins`
+--
+
+DROP TABLE IF EXISTS `AspNetUserLogins`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `AspNetUserLogins` (
+  `LoginProvider` varchar(128) NOT NULL,
+  `ProviderKey` varchar(128) NOT NULL,
+  `ProviderDisplayName` longtext DEFAULT NULL,
+  `UserId` varchar(255) NOT NULL,
+  PRIMARY KEY (`LoginProvider`,`ProviderKey`),
+  KEY `IX_AspNetUserLogins_UserId` (`UserId`),
+  CONSTRAINT `FK_AspNetUserLogins_AspNetUsers_UserId` FOREIGN KEY (`UserId`) REFERENCES `AspNetUsers` (`Id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `AspNetUserLogins`
+--
+
+LOCK TABLES `AspNetUserLogins` WRITE;
+/*!40000 ALTER TABLE `AspNetUserLogins` DISABLE KEYS */;
+/*!40000 ALTER TABLE `AspNetUserLogins` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `AspNetUserRoles`
+--
+
+DROP TABLE IF EXISTS `AspNetUserRoles`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `AspNetUserRoles` (
+  `UserId` varchar(255) NOT NULL,
+  `RoleId` varchar(255) NOT NULL,
+  PRIMARY KEY (`UserId`,`RoleId`),
+  KEY `IX_AspNetUserRoles_RoleId` (`RoleId`),
+  CONSTRAINT `FK_AspNetUserRoles_AspNetRoles_RoleId` FOREIGN KEY (`RoleId`) REFERENCES `AspNetRoles` (`Id`) ON DELETE CASCADE,
+  CONSTRAINT `FK_AspNetUserRoles_AspNetUsers_UserId` FOREIGN KEY (`UserId`) REFERENCES `AspNetUsers` (`Id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `AspNetUserRoles`
+--
+
+LOCK TABLES `AspNetUserRoles` WRITE;
+/*!40000 ALTER TABLE `AspNetUserRoles` DISABLE KEYS */;
+INSERT INTO `AspNetUserRoles` VALUES ('65e38a64-088a-4e05-aa89-82d296273c69','0ad6fd0f-d10f-450e-a858-74d316d8bbbe');
+/*!40000 ALTER TABLE `AspNetUserRoles` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `AspNetUserTokens`
+--
+
+DROP TABLE IF EXISTS `AspNetUserTokens`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `AspNetUserTokens` (
+  `UserId` varchar(255) NOT NULL,
+  `LoginProvider` varchar(128) NOT NULL,
+  `Name` varchar(128) NOT NULL,
+  `Value` longtext DEFAULT NULL,
+  PRIMARY KEY (`UserId`,`LoginProvider`,`Name`),
+  CONSTRAINT `FK_AspNetUserTokens_AspNetUsers_UserId` FOREIGN KEY (`UserId`) REFERENCES `AspNetUsers` (`Id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `AspNetUserTokens`
+--
+
+LOCK TABLES `AspNetUserTokens` WRITE;
+/*!40000 ALTER TABLE `AspNetUserTokens` DISABLE KEYS */;
+INSERT INTO `AspNetUserTokens` VALUES ('f9514e39-8b49-4524-bceb-c90e5e4f8920','[AspNetUserStore]','AuthenticatorKey','26YN4PZBPFFVFOBRELS46FCFDOQHUXXO');
+/*!40000 ALTER TABLE `AspNetUserTokens` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `AspNetUsers`
+--
+
+DROP TABLE IF EXISTS `AspNetUsers`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `AspNetUsers` (
+  `Id` varchar(255) NOT NULL,
+  `Firstname` longtext NOT NULL,
+  `Lastname` longtext NOT NULL,
+  `Adress` longtext NOT NULL,
+  `CreatedAt` datetime(6) NOT NULL,
+  `UserName` varchar(256) DEFAULT NULL,
+  `NormalizedUserName` varchar(256) DEFAULT NULL,
+  `Email` varchar(256) DEFAULT NULL,
+  `NormalizedEmail` varchar(256) DEFAULT NULL,
+  `EmailConfirmed` tinyint(1) NOT NULL,
+  `PasswordHash` longtext DEFAULT NULL,
+  `SecurityStamp` longtext DEFAULT NULL,
+  `ConcurrencyStamp` longtext DEFAULT NULL,
+  `PhoneNumber` longtext DEFAULT NULL,
+  `PhoneNumberConfirmed` tinyint(1) NOT NULL,
+  `TwoFactorEnabled` tinyint(1) NOT NULL,
+  `LockoutEnd` datetime(6) DEFAULT NULL,
+  `LockoutEnabled` tinyint(1) NOT NULL,
+  `AccessFailedCount` int(11) NOT NULL,
+  PRIMARY KEY (`Id`),
+  UNIQUE KEY `UserNameIndex` (`NormalizedUserName`),
+  KEY `EmailIndex` (`NormalizedEmail`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `AspNetUsers`
+--
+
+LOCK TABLES `AspNetUsers` WRITE;
+/*!40000 ALTER TABLE `AspNetUsers` DISABLE KEYS */;
+INSERT INTO `AspNetUsers` VALUES ('29fde70b-7faf-4e6f-9725-a634fc2911a1','','','','0001-01-01 00:00:00.000000','hehe@gmai.com','HEHE@GMAI.COM','hehe@gmai.com','HEHE@GMAI.COM',0,'AQAAAAIAAYagAAAAELBH3ZM4nr6TijlqPYpDXKKNryiXG4DPpAQKQlbqSDIjd0A1p6PSMWILRbBNq6/btw==','HHJZKL4JDYXWDRXLNRDXECIYVWYAXMC7','eafd2e6b-1cda-4f78-a92f-e8f8f569d365',NULL,0,0,NULL,1,0),('65e38a64-088a-4e05-aa89-82d296273c69','','','','0001-01-01 00:00:00.000000','admin@example.com','ADMIN@EXAMPLE.COM','admin@example.com','ADMIN@EXAMPLE.COM',1,'AQAAAAIAAYagAAAAEMnWqk0zd8nu9omaXZErUtJnSucr1VY1Rcd/olxZSoMr8lPKc/83KVEFue7yaAjFyg==','BCNMIYORK4ZIIWGWHQS6XMTVSQTFXUPD','03ce534d-7478-4c79-9c80-dfe82b6d8ca1',NULL,0,0,NULL,1,0),('71d90898-fcfd-43de-a675-efc4087c1175','','','','0001-01-01 00:00:00.000000','testtest.@gmail.com','TESTTEST.@GMAIL.COM','testtest.@gmail.com','TESTTEST.@GMAIL.COM',0,'AQAAAAIAAYagAAAAEIHclh/xWwQgb/Lo5oyW5koaSDpbqTJWUMwlF3IYakR5GI0bSk9iFQ+r8FcvIo7NVw==','Y5NITVKTND22QYVMH6376UNNGTUBI3K4','71e9323b-b8b3-4a4e-a615-074f48d2d904',NULL,0,0,NULL,1,0),('c351aec2-9a4c-4917-b4d6-2771c6d52efd','','','','0001-01-01 00:00:00.000000','test111@test.com','TEST111@TEST.COM','test111@test.com','TEST111@TEST.COM',0,'AQAAAAIAAYagAAAAEObwkWsddZrBl/K3IVDf6nqWpRDzfPbpzpLsKBqRPgqdA/6yuD+/PqdxRKRzgnY+2Q==','UKWI44I53UVMGIC7HEMW5RL7P6CVJ3CW','3ae05b8b-98fa-46db-b4d6-b9273baea6db',NULL,0,0,NULL,1,0),('cdc587ba-5757-4884-90bd-40bd150b2e74','','','','0001-01-01 00:00:00.000000','almc123@linuxmail.org','ALMC123@LINUXMAIL.ORG','almc123@linuxmail.org','ALMC123@LINUXMAIL.ORG',0,'AQAAAAIAAYagAAAAEFPHHQ6d2rJsKi6HO/eEEGOPbjWSLcUuD5iGkwoLVvOjKzKiBfFiOMC8yrQyUyLP7w==','TBRH6VWX4LMMAOZ4I4BNZTNQGN2REMKX','cee53de9-c86a-4bf2-83ae-33c9a7df26f7',NULL,0,0,NULL,1,0),('f9514e39-8b49-4524-bceb-c90e5e4f8920','','','','0001-01-01 00:00:00.000000','admin@admin.com','ADMIN@ADMIN.COM','admin@admin.com','ADMIN@ADMIN.COM',0,'AQAAAAIAAYagAAAAEOXjLqxaSlPr2kuaFtL9Sj0S97fhyJZ892x/dwii0dvfCapXdlvQt0zAz3rtyhndBQ==','MRHCESYXI7U235EVY2DN5IHOVYJO3MML','0b7c22e4-85d5-41eb-ba15-7da606fe71d8',NULL,0,0,NULL,1,0);
+/*!40000 ALTER TABLE `AspNetUsers` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `CartItems`
+--
+
+DROP TABLE IF EXISTS `CartItems`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `CartItems` (
+  `Id` int(11) NOT NULL AUTO_INCREMENT,
+  `UserId` varchar(255) NOT NULL,
+  `ProductId` int(11) NOT NULL,
+  `ProductName` longtext NOT NULL,
+  `Price` decimal(65,30) NOT NULL,
+  `Quantity` int(11) NOT NULL,
+  `ImageUrl` longtext NOT NULL,
+  `DateAdded` datetime(6) NOT NULL,
+  PRIMARY KEY (`Id`),
+  KEY `IX_CartItems_UserId_ProductId` (`UserId`,`ProductId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `CartItems`
+--
+
+LOCK TABLES `CartItems` WRITE;
+/*!40000 ALTER TABLE `CartItems` DISABLE KEYS */;
+/*!40000 ALTER TABLE `CartItems` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `Games`
+--
+
+DROP TABLE IF EXISTS `Games`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `Games` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `Title` longtext NOT NULL,
+  `Price` decimal(65,30) NOT NULL,
+  `Description` longtext NOT NULL,
+  `Cover` longtext NOT NULL,
+  `Img1` longtext DEFAULT NULL,
+  `Img2` longtext DEFAULT NULL,
+  `Img3` longtext DEFAULT NULL,
+  `Img4` longtext DEFAULT NULL,
+  `Img5` longtext DEFAULT NULL,
+  `Category` longtext NOT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `Games`
+--
+
+LOCK TABLES `Games` WRITE;
+/*!40000 ALTER TABLE `Games` DISABLE KEYS */;
+INSERT INTO `Games` VALUES (9,'Shredders',19.000000000000000000000000000000,'Break into the snowboarding event of the year in the hope of scoring a wildcard entry to an exclusive invitational. To prove you’re up to the challenge, master the art of park riding, buttering, rails and massive kickers and earn your place in the world of snowboarding.','https://cdn.thegamesdb.net/images/original/boxart/front/98598-1.jpg','https://images.igdb.com/igdb/image/upload/t_720p/sc8glc.webp','https://images.igdb.com/igdb/image/upload/t_720p/sc8gld.webp','https://images.igdb.com/igdb/image/upload/t_720p/sc8gle.webp','https://images.igdb.com/igdb/image/upload/t_720p/sc8glf.webp',NULL,'Sports'),(10,'Golf With Your Friends',15.000000000000000000000000000000,'Why have friends if not to play golf... with your friends! Nothing is out of bounds as you take on courses filled with fast paced, exciting, simultaneous mini golf for up to 12 players!','https://images.launchbox-app.com/b65ca5ac-8e3d-46fa-b4a9-eb7c89c38043.jpg','https://images.igdb.com/igdb/image/upload/t_720p/sc99wk.webp','https://images.igdb.com/igdb/image/upload/t_720p/sc99wl.webp','https://images.igdb.com/igdb/image/upload/t_720p/kgacasbtiyaatdk3naye.webp','https://images.igdb.com/igdb/image/upload/t_720p/brsg14n5tgntzdz2hizg.webp',NULL,'Sports'),(11,'STRAY',25.000000000000000000000000000000,'Lost, alone and separated from family, a stray cat must untangle an ancient mystery to escape a long-forgotten city.\r\n\r\nStray is a third-person cat adventure game set amidst the detailed, neon-lit alleys of a decaying cybercity and the murky environments of its seedy underbelly. Roam surroundings high and low, defend against unforeseen threats and solve the mysteries of this unwelcoming place inhabited by curious droids and dangerous creatures.\r\n\r\nSee the world through the eyes of a cat and interact with the environment in playful ways. Be stealthy, nimble, silly, and sometimes as annoying as possible with the strange inhabitants of this mysterious world.\r\nAlong the way, the cat befriends a small flying drone, known only as B-12. With the help of this newfound companion, the duo must find a way out.\r\n\r\nStray is developed by BlueTwelve Studio, a small team from the south of France mostly made up of cats and a handful of humans.','https://cdn.thegamesdb.net/images/original/boxart/front/101042-1.jpg','https://images.igdb.com/igdb/image/upload/t_720p/sc8bil.webp','https://images.igdb.com/igdb/image/upload/t_720p/sc8bij.webp','https://images.igdb.com/igdb/image/upload/t_720p/sc8bii.webp','https://images.igdb.com/igdb/image/upload/t_720p/sc8bim.webp',NULL,'Adventure'),(12,'DREDGE',9.000000000000000000000000000000,'Dredge is a fishing adventure with a sinister undercurrent. Sell your catch, upgrade your vessel and dredge the depths for long-buried relics. Explore the stories of the strange locals and discover why some things are best left forgotten.','https://images.igdb.com/igdb/image/upload/t_cover_big/co97eq.webp','https://images.igdb.com/igdb/image/upload/t_720p/sccp16.webp','https://images.igdb.com/igdb/image/upload/t_720p/sccp0w.webp','https://images.igdb.com/igdb/image/upload/t_720p/sccp0x.webp','https://images.igdb.com/igdb/image/upload/t_720p/sccp0y.webp','https://images.igdb.com/igdb/image/upload/t_720p/sccp12.webp','Adventure'),(13,'Indiana Jones and the Great Circle',39.000000000000000000000000000000,'Uncover one of history’s greatest mysteries in Indiana Jones and the Great Circle, a first-person, single-player adventure set between the events of Raiders of the Lost Ark and The Last Crusade. You’ll become the legendary archaeologist in this cinematic action-adventure game from MachineGames, the award-winning studio behind the recent Wolfenstein series, and executive produced by Hall of Fame game designer Todd Howard.','https://images.igdb.com/igdb/image/upload/t_cover_big/co7nbc.webp','https://images.igdb.com/igdb/image/upload/t_720p/scq5ss.webp','https://images.igdb.com/igdb/image/upload/t_720p/scq5st.webp','https://images.igdb.com/igdb/image/upload/t_720p/scq5sv.webp','https://images.igdb.com/igdb/image/upload/t_720p/scq5su.webp','https://images.igdb.com/igdb/image/upload/t_720p/scq5sr.webp','Adventure'),(14,'Escape Simulator',9.000000000000000000000000000000,'Escape Simulator is a next-gen escape room experience: pick up and examine everything, move furniture, smash pots and melt locks! Play solo or with a friend to solve cryptic puzzles and riddles.','https://images.igdb.com/igdb/image/upload/t_cover_big/co49cc.webp','https://images.igdb.com/igdb/image/upload/t_720p/sc97qb.webp','https://images.igdb.com/igdb/image/upload/t_720p/sc97qd.webp','https://images.igdb.com/igdb/image/upload/t_720p/sc97qe.webp','https://images.igdb.com/igdb/image/upload/t_720p/sc97qf.webp',NULL,'Puzzle'),(15,'realMyst: Masterpiece Edition',20.000000000000000000000000000000,'Alone on a mysterious island, you set out to explore its grandeur and mystery. Here, a chilling tale of intrigue and injustice, defying all boundaries of space and time, is being told. Summon your wits and imagination about you. Every scrap of paper and ambient sound may provide the vital clues that allow hidden secrets to unravel before you. Each discovery you make and each puzzle you solve will lead you one step closer to reversing a wrong that has gone unchecked for ages.','https://images.igdb.com/igdb/image/upload/t_cover_big/co263b.webp','https://images.igdb.com/igdb/image/upload/t_720p/u9ytmgizp4siqztkm0vh.webp','https://images.igdb.com/igdb/image/upload/t_720p/drawgilafr0zjfgoe6iz.webp','https://images.igdb.com/igdb/image/upload/t_720p/inyrsik9wcgglflnsw16.webp','https://images.igdb.com/igdb/image/upload/t_720p/xyqrsqfqrvrsygtmcvba.webp','https://images.igdb.com/igdb/image/upload/t_720p/hxqcrsgoubdfgnxavkcb.webp','Puzzle'),(16,'The Room 4: Old Sins',25.000000000000000000000000000000,'The disappearance of an ambitious engineer and his high-society wife provokes a hunt for a precious artefact. The trail leads you to the attic of their home, and the discovery of an old, peculiar dollhouse. What secrets lie within these walls?','https://images.igdb.com/igdb/image/upload/t_cover_big/co3bq0.webp','https://images.igdb.com/igdb/image/upload/t_720p/scap9h.webp','https://images.igdb.com/igdb/image/upload/t_720p/scap9j.webp','https://images.igdb.com/igdb/image/upload/t_720p/scap9k.webp','https://images.igdb.com/igdb/image/upload/t_720p/scap9r.webp','https://images.igdb.com/igdb/image/upload/t_720p/scap9q.webp','Puzzle'),(17,'Wreckfest',29.000000000000000000000000000000,'Wreckfest is a racing video game developed by Bugbear Entertainment and published by THQ Nordic. It features demolition derbies and traditional races with a strong emphasis on vehicular damage and realistic physics. The game includes various modes such as career, multiplayer, and custom events. Released in 2018, Wreckfest is notable for its detailed destruction modelling and the strategic depth required in vehicle customisation and handling.','https://images.igdb.com/igdb/image/upload/t_cover_big/co3vof.webp','https://images.igdb.com/igdb/image/upload/t_720p/iey06e89dqp3jcm1kzgy.webp','https://images.igdb.com/igdb/image/upload/t_720p/j2oxysulsbjv1u2ksdly.webp','https://images.igdb.com/igdb/image/upload/t_720p/bajcswuzrxynvgw3wpcz.webp','https://images.igdb.com/igdb/image/upload/t_720p/ar751.webp',NULL,'Racing'),(18,'Forza Horizon 5',35.000000000000000000000000000000,'Your Ultimate Horizon Adventure awaits! Explore the vibrant and ever-evolving open world landscapes of Mexico with limitless, fun driving action in hundreds of the world’s greatest cars. This is Your Horizon Adventure Lead breathtaking expeditions across the vibrant and ever-evolving open world landscapes of Mexico with limitless, fun driving action in hundreds of the world’s greatest cars. This is a Diverse Open World Explore a world of striking contrast and beauty. Discover living deserts, lush jungles, historic cities, hidden ruins, pristine beaches, vast canyons and a towering snow-capped volcano. This is an Adventurous Open World Immerse yourself in a deep campaign with hundreds of challenges that reward you for engaging in the activities you love. Meet new characters and choose the outcomes of their Horizon Story missions. This is an Evolving Open World Take on awe-inspiring weather events such as towering dust storms and intense tropical storms as Mexico’s unique, dynamic seasons change the world every week. Keep coming back for new events, challenges, collectibles, and rewards, and new areas to explore. No two seasons will ever be the same. This is a Social Open World Team up with other players and enter the Horizon Arcade for a continuing series of fun, over-the-top challenges that keep you and your friends in the action and having fun with no menus, loading screens or lobbies. Meet new friends in Horizon Open and Tours and share your creations with new community gift sharing. This is Your Open World Create your own expressions of fun with the powerful new EventLab gameplay toolset including custom races, challenges, stunts, and entirely new game modes. Customize your cars in more ways than ever before with new options such as the ability open and close convertible tops, paint brake calipers, and more. Use the new Gift Drops feature to share your custom creations with the community. Begin Your Horizon Adventure today!','https://images.igdb.com/igdb/image/upload/t_cover_big/co3ofx.webp','https://images.igdb.com/igdb/image/upload/t_720p/scahhp.webp','https://images.igdb.com/igdb/image/upload/t_720p/scahhr.webp','https://images.igdb.com/igdb/image/upload/t_720p/scahhq.webp','https://images.igdb.com/igdb/image/upload/t_720p/scahhs.webp','https://images.igdb.com/igdb/image/upload/t_720p/scu1yv.webp','Racing'),(19,'Marvel\'s Spider-Man 2',35.000000000000000000000000000000,'In Marvel\'s Spider-Man 2, players can switch between Peter and Miles, each with unique abilities and combat styles. The game introduces new villains, including Kraven the Hunter and Venom, while expanding the open-world environment with more detailed and interactive elements.','https://preview.redd.it/official-cover-art-for-spider-man-2-out-october-20-v0-a5h4887tvu4b1.jpg?auto=webp&s=0c1c3dcd37e39d1e4e61a73e735cfc6d7e5fccec','https://images.igdb.com/igdb/image/upload/t_720p/scfeho.webp','https://images.igdb.com/igdb/image/upload/t_720p/scfehq.webp','https://images.igdb.com/igdb/image/upload/t_720p/scmwdj.webp','https://images.igdb.com/igdb/image/upload/t_720p/scoq3o.webp',NULL,'Action'),(20,'Batman: Arkham Knight',30.000000000000000000000000000000,'Batman: Arkham Knight is an action-adventure game developed by Rocksteady Studios, released in 2015. It is the final installment in the Arkham series. Players control Batman as he faces Scarecrow, who unites Gotham\'s criminals to destroy the Dark Knight. The mysterious Arkham Knight, a new adversary, aids Scarecrow in his plan. The game features open-world exploration, stealth, combat, and puzzle-solving. A key addition is the Batmobile, used for traversal and combat. The story explores Batman’s psychological struggles and the collapse of his alliances as Gotham spirals into chaos.','https://images.igdb.com/igdb/image/upload/t_cover_big/co1nh1.webp','https://images.igdb.com/igdb/image/upload/t_720p/f7dtfyst1yempsfapqze.webp','https://images.igdb.com/igdb/image/upload/t_720p/ietlbq4wk9beejz4we8d.webp','https://images.igdb.com/igdb/image/upload/t_720p/scu5kz.webp','https://images.igdb.com/igdb/image/upload/t_720p/i8xdpzypif2ihuxk5cbx.webp','https://images.igdb.com/igdb/image/upload/t_720p/p6c1ywz7u3r5o5bn8gmd.webp','Action'),(21,'Tony Hawk\'s Pro Skater 1 + 2',29.000000000000000000000000000000,'Play the fully-remastered Tony Hawk\'s Pro Skater & Tony Hawk\'s Pro Skater 2 games in one epic collection, rebuilt from the ground up in incredible HD. All the pro skaters, levels and tricks are back and fully-remastered.','https://images.igdb.com/igdb/image/upload/t_720p/ar7dr.webp','https://images.igdb.com/igdb/image/upload/t_720p/sc8aj0.webp','https://images.igdb.com/igdb/image/upload/t_720p/sc8aj1.webp','https://images.igdb.com/igdb/image/upload/t_720p/sc8aj2.webp','https://images.igdb.com/igdb/image/upload/t_720p/sctkqf.webp',NULL,'Sports'),(22,'Russian Fishing 4',21.000000000000000000000000000000,'With the development of Russian Fishing 4, our team\'s goal is to create a world capable of conveying our shared passion for fishing and our love of nature. Waiting for the first bite at dawn as the stars fade, holding your breath as the rod bends alarmingly under the bite of a large fish or cooking the fish you just caught by the campfire – all of this is possible in Russian Fishing 4.\r\nAfter all, this game is designed by anglers, for anglers.\r\n','https://images.igdb.com/igdb/image/upload/t_cover_big/co1nie.webp','https://images.igdb.com/igdb/image/upload/t_720p/argwi.webp','https://images.igdb.com/igdb/image/upload/t_720p/sc5qv6.webp','https://images.igdb.com/igdb/image/upload/t_720p/sc5qv8.webp','https://images.igdb.com/igdb/image/upload/t_720p/sc5qva.webp','https://images.igdb.com/igdb/image/upload/t_720p/sc5qv9.webp','Sports'),(23,'Team Sonic Racing',25.000000000000000000000000000000,'Team Sonic Racing combines the best elements of arcade and fast-paced competitive style racing as you face-off with friends in intense multiplayer racing.','https://images.igdb.com/igdb/image/upload/t_cover_big/co1upm.webp','https://images.igdb.com/igdb/image/upload/t_720p/fw0l6se8pmju9aqfywws.webp','https://images.igdb.com/igdb/image/upload/t_720p/vjmure5vxdeokhhtmiyj.webp','https://images.igdb.com/igdb/image/upload/t_720p/sc66ux.webp','https://images.igdb.com/igdb/image/upload/t_720p/nnrutayth4opl07x0mlv.webp','https://images.igdb.com/igdb/image/upload/t_720p/sc6az3.webp','Racing'),(24,'SONIC X SHADOW GENERATIONS',29.000000000000000000000000000000,'Shadow the Hedgehog is back with Classic and Modern Sonic in Sonic X Shadow Generations, an all-new collection featuring two unique experiences! Play as Shadow in a brand-new story campaign featuring never-before-seen abilities that prove why he\'s known as the Ultimate Life Form! Speed through iconic stages from Shadow\'s history, discover hidden secrets in an expansive hub world, and unlock new powers to take on Black Doom and save the world. Sonic X Shadow Generations also includes a complete remaster of the highly acclaimed Sonic Generations, a time-traveling adventure featuring a greatest-hits collection of 3D and 2D Sonic stages, now with upgraded visuals and new bonus content.','https://images.igdb.com/igdb/image/upload/t_cover_big/co8byo.webp','https://images.igdb.com/igdb/image/upload/t_720p/scqbwe.webp','https://images.igdb.com/igdb/image/upload/t_720p/scqbwg.webp','https://images.igdb.com/igdb/image/upload/t_720p/scqbwf.webp',NULL,NULL,'Action'),(25,'Brawlhalla',21.000000000000000000000000000000,'Brawlhalla is a free platform fighting game with over 100 million players that supports up to 8 players online in a single match with full cross-play. Frequent updates. 50 unique characters and counting. Come fight for glory in the halls of Valhalla!','https://images.igdb.com/igdb/image/upload/t_cover_big/co6i3u.webp','https://images.igdb.com/igdb/image/upload/t_720p/v7niniwb7hj61cft2ald.webp','https://images.igdb.com/igdb/image/upload/t_720p/fbsltkil1dqw4z0inzy7.webp','https://images.igdb.com/igdb/image/upload/t_720p/wjiyva3dd1jqmv2avvno.webp','https://images.igdb.com/igdb/image/upload/t_720p/p2ldsxnrdqk6hcup13lf.webp',NULL,'Action'),(26,'Ghost of Tsushima',33.000000000000000000000000000000,'Uncover the hidden wonders of Tsushima in this open-world action adventure. Forge a new path and wage an unconventional war for the freedom of Tsushima. Challenge opponents with your katana, master the bow to eliminate distant threats, develop stealth tactics to ambush enemies in order to win over the mongols.','https://images.igdb.com/igdb/image/upload/t_cover_big/co2crj.webp','https://images.igdb.com/igdb/image/upload/t_720p/lykfms7zl20y2wlkaji7.webp','https://images.igdb.com/igdb/image/upload/t_720p/lffd1zevma6zyflxgojh.webp','https://images.igdb.com/igdb/image/upload/t_720p/tpgj7ycwworclmurbw0h.webp','https://images.igdb.com/igdb/image/upload/t_720p/j7dbzjr8ddshnaewmb4d.webp','https://images.igdb.com/igdb/image/upload/t_720p/zwcxfagpos7elct133ip.webp','Adventure'),(27,'Poppy Playtime',19.000000000000000000000000000000,'You must stay alive in this horror/puzzle adventure. Try to survive the vengeful toys waiting for you in the abandoned toy factory. Use your GrabPack to hack electrical circuits or nab anything from afar. Explore the mysterious facility... and don\'t get caught.','https://images.igdb.com/igdb/image/upload/t_cover_big/co84i0.webp','https://images.igdb.com/igdb/image/upload/t_720p/sce6wx.webp','https://images.igdb.com/igdb/image/upload/t_720p/sce6wy.webp','https://images.igdb.com/igdb/image/upload/t_720p/sce6x0.webp','https://images.igdb.com/igdb/image/upload/t_720p/sce6wz.webp',NULL,'Puzzle'),(28,'Escape the Backrooms',19.000000000000000000000000000000,'You\'ve fallen into the backrooms and now need to find a way to escape. Traverse through eerie procedurally generated levels while avoiding entities and other danger.','https://images.igdb.com/igdb/image/upload/t_cover_big/co7hmv.webp','https://images.igdb.com/igdb/image/upload/t_720p/scglk9.webp','https://images.igdb.com/igdb/image/upload/t_720p/scglkc.webp','https://images.igdb.com/igdb/image/upload/t_720p/scglkg.webp','https://images.igdb.com/igdb/image/upload/t_720p/scglk6.webp',NULL,'Puzzle'),(29,'Avatar: Frontiers of Pandora',34.000000000000000000000000000000,'Avatar: Frontiers of Pandora is a first-person, action-adventure game set in the never-before-seen Western Frontier of Pandora. Abducted by the human militaristic corporation known as the RDA, you, a Na’vi, were trained and molded to serve their purpose. Fifteen years later, you are free, but find yourself a stranger in your birthplace. Reconnect with your lost heritage, discover what it truly means to be Na\'vi, and join other clans to protect Pandora from the RDA.','https://images.igdb.com/igdb/image/upload/t_cover_big/co6m72.webp','https://images.igdb.com/igdb/image/upload/t_720p/scahcb.webp','https://images.igdb.com/igdb/image/upload/t_720p/scahcc.webp','https://images.igdb.com/igdb/image/upload/t_720p/scahce.webp','https://images.igdb.com/igdb/image/upload/t_720p/scahcf.webp','https://images.igdb.com/igdb/image/upload/t_720p/sctjbl.web','Adventure'),(30,'The Headliners',19.000000000000000000000000000000,'Co-op horror game where you play in teams of 1 to 4 reckless journalists, ready to explore a city overrun by deadly creatures to snap spectacular footage. Your only goal: make the headlines without becoming one.','https://images.igdb.com/igdb/image/upload/t_cover_big/co9c24.webp','https://images.igdb.com/igdb/image/upload/t_720p/scup3n.webp','https://images.igdb.com/igdb/image/upload/t_720p/scup3j.webp','https://images.igdb.com/igdb/image/upload/t_720p/scup3l.webp','https://images.igdb.com/igdb/image/upload/t_720p/scup3k.webp','https://images.igdb.com/igdb/image/upload/t_720p/scup3m.webp','Action'),(31,'Football Manager 2024',25.000000000000000000000000000000,'Step into the shoes of a real boss and write your own football story in Football Manager 2024, the most complete edition in the series yet. Whether you’re a manager who likes to build from the bottom or prefers to chase immediate glory, the perfect challenge awaits. The arrival of the new Meiji Yasuda Insurance Ltd J. League licence unlocks J1 League, J2 League, J3 League for the first time ever, giving you the opportunity to explore new horizons in Japan. Wherever you manage, it\'s up to you to build a team capable of competing with the world\'s elite.','https://images.igdb.com/igdb/image/upload/t_cover_big/co73z1.webp','https://images.igdb.com/igdb/image/upload/t_720p/scoi8e.webp','https://images.igdb.com/igdb/image/upload/t_720p/scoi8f.webp','https://images.igdb.com/igdb/image/upload/t_720p/scoi8g.webp','https://images.igdb.com/igdb/image/upload/t_720p/scoi8h.webp',NULL,'Sports'),(32,'BeamNG.drive',39.000000000000000000000000000000,'BeamNG.drive is a realistic, immersive driving game offering near-limitless possibilities. Our soft-body physics engine simulates every component of a vehicle in real time, resulting in realistic, dynamic behavior. The driving feel is authentic and visceral, and crashes are realistic and violent; yet the physics are accessible enough to drive with a keyboard or gamepad while still being authentic with a full racing wheel with uncompromising realism.','https://images.igdb.com/igdb/image/upload/t_cover_big/co1sym.webp','https://images.igdb.com/igdb/image/upload/t_720p/scubvq.webp','https://images.igdb.com/igdb/image/upload/t_720p/scubvo.webp','https://images.igdb.com/igdb/image/upload/t_720p/scubvs.webp','https://images.igdb.com/igdb/image/upload/t_720p/scubvw.webp',NULL,'Racing'),(33,'Tokyo Xtreme Racer',35.000000000000000000000000000000,'\"Tokyo Xtreme Racer\" is a racing game set in a blocked-off future Tokyo, where players aim to be the fastest by driving their best cars on the highways that weave through the city. A new title, \"Tokyo Xtreme Racer\" now in development please look forward to the release of more information.','https://images.igdb.com/igdb/image/upload/t_cover_big/co9bk8.webp','https://images.igdb.com/igdb/image/upload/t_720p/scuzue.webp','https://images.igdb.com/igdb/image/upload/t_720p/scuzuh.webp','https://images.igdb.com/igdb/image/upload/t_720p/scuzui.webp','https://images.igdb.com/igdb/image/upload/t_720p/scuzuf.webp','https://images.igdb.com/igdb/image/upload/t_720p/scuzug.webp','Racing');
+/*!40000 ALTER TABLE `Games` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `UserGames`
+--
+
+DROP TABLE IF EXISTS `UserGames`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `UserGames` (
+  `UserId` varchar(255) NOT NULL,
+  `GameId` int(11) NOT NULL,
+  `PurchaseDate` datetime(6) NOT NULL,
+  PRIMARY KEY (`UserId`,`GameId`),
+  KEY `IX_UserGames_GameId` (`GameId`),
+  CONSTRAINT `FK_UserGames_AspNetUsers_UserId` FOREIGN KEY (`UserId`) REFERENCES `AspNetUsers` (`Id`) ON DELETE CASCADE,
+  CONSTRAINT `FK_UserGames_Games_GameId` FOREIGN KEY (`GameId`) REFERENCES `Games` (`ID`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `UserGames`
+--
+
+LOCK TABLES `UserGames` WRITE;
+/*!40000 ALTER TABLE `UserGames` DISABLE KEYS */;
+INSERT INTO `UserGames` VALUES ('29fde70b-7faf-4e6f-9725-a634fc2911a1',10,'2025-03-13 15:05:51.811699'),('29fde70b-7faf-4e6f-9725-a634fc2911a1',13,'2025-03-13 15:06:26.238972'),('29fde70b-7faf-4e6f-9725-a634fc2911a1',18,'2025-03-13 15:06:26.356843'),('f9514e39-8b49-4524-bceb-c90e5e4f8920',9,'2025-04-22 17:42:31.475080'),('f9514e39-8b49-4524-bceb-c90e5e4f8920',10,'2025-04-15 13:15:56.231909'),('f9514e39-8b49-4524-bceb-c90e5e4f8920',14,'2025-03-19 15:09:00.956882'),('f9514e39-8b49-4524-bceb-c90e5e4f8920',19,'2025-03-17 13:04:31.622346'),('f9514e39-8b49-4524-bceb-c90e5e4f8920',25,'2025-03-19 13:33:07.567676');
+/*!40000 ALTER TABLE `UserGames` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `__EFMigrationsHistory`
+--
+
+DROP TABLE IF EXISTS `__EFMigrationsHistory`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `__EFMigrationsHistory` (
+  `MigrationId` varchar(150) NOT NULL,
+  `ProductVersion` varchar(32) NOT NULL,
+  PRIMARY KEY (`MigrationId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `__EFMigrationsHistory`
+--
+
+LOCK TABLES `__EFMigrationsHistory` WRITE;
+/*!40000 ALTER TABLE `__EFMigrationsHistory` DISABLE KEYS */;
+INSERT INTO `__EFMigrationsHistory` VALUES ('20250213182356_FirstMigration','8.0.13'),('20250213183601_SecondMigration','8.0.13'),('20250217121401_AddGamesTable','8.0.13'),('20250218094503_AddCategoryToGame','8.0.13'),('20250219183112_AddShoppingCart','8.0.13'),('20250313142438_AddUserGames','8.0.13');
+/*!40000 ALTER TABLE `__EFMigrationsHistory` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2025-06-12 10:09:49
