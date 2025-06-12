@@ -18,7 +18,9 @@ public class CartService
     // Hämtar kundvagnen från sessionen eller skapar en ny om ingen finns
     public ShoppingCart GetCart()
     {
+#pragma warning disable CS8602 // Dereference of a possibly null reference.
         var session = _httpContextAccessor.HttpContext.Session;
+#pragma warning restore CS8602 // Dereference of a possibly null reference.
         var cart = session.GetObject<ShoppingCart>(CartSessionKey);
         
         if (cart == null)
@@ -33,7 +35,9 @@ public class CartService
     // Sparar kundvagnen i sessionen
     public void SaveCart(ShoppingCart cart)
     {
+#pragma warning disable CS8602 // Dereference of a possibly null reference.
         var session = _httpContextAccessor.HttpContext.Session;
+#pragma warning restore CS8602 // Dereference of a possibly null reference.
         session.SetObject(CartSessionKey, cart);
     }
 
@@ -55,7 +59,7 @@ public static class SessionExtensions
     }
 
     // Hämtar ett objekt från sessionen genom att deserialisera JSON
-    public static T GetObject<T>(this ISession session, string key)
+    public static T? GetObject<T>(this ISession session, string key)
     {
         var value = session.GetString(key);
         return value == null ? default : JsonSerializer.Deserialize<T>(value);

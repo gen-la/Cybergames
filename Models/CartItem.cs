@@ -2,7 +2,7 @@
 public class CartItem
 {
     public int Id { get; set; } // Game ID
-    public string Name { get; set; } // Game Title
+    public string? Name { get; set; } // Game Title
     public decimal Price { get; set; } // Game Price
     public int Quantity { get; set; } // Quantity
 }

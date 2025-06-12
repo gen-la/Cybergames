@@ -1,5 +1,5 @@
-using Microsoft.EntityFrameworkCore;
-using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
+/*using Microsoft.EntityFrameworkCore;
+//using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 using Cybergames;
 using Cybergames.Data;
 using Cybergames.Models;
@@ -15,12 +15,18 @@ builder.Services.AddRazorPages(options =>
 });
 
 // Lägg till DbContext-konfiguration för MySQL
+//builder.Services.AddDbContext<ApplicationDbContext>(options =>
+//    options.UseMySql(
+//        builder.Configuration.GetConnectionString("DefaultConnection"), // Hämtar anslutningssträngen från appsettings.json
+//        new MySqlServerVersion(new Version(8, 0, 21)) // Ange din MySQL-serverversion
+//    )
+//);
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseMySql(
-        builder.Configuration.GetConnectionString("DefaultConnection"), // Hämtar anslutningssträngen från appsettings.json
-        new MySqlServerVersion(new Version(8, 0, 21)) // Ange din MySQL-serverversion
+    options.UseSqlite(
+        builder.Configuration.GetConnectionString("DefaultConnection")
     )
 );
+
 
 // Lägg till Identity-tjänster för autentisering och hantering av användare
 builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = false)
@@ -31,7 +37,7 @@ builder.Services.AddAuthorization(options =>
 {
     options.AddPolicy("AdminOnly", policy =>
         policy.RequireAssertion(context =>
-            context.User.Identity.IsAuthenticated && // Kontrollera om användaren är autentiserad
+            context.User.Identity != null && context.User.Identity.IsAuthenticated && // Kontrollera om användaren är autentiserad
             context.User.HasClaim(c => // Kontrollera om användaren har en specifik e-postadress
                 c.Type == System.Security.Claims.ClaimTypes.Email &&
                 c.Value == "admin@admin.com")));
@@ -82,4 +88,72 @@ using (var scope = app.Services.CreateScope())
     await AdminSetup.EnsureAdminUserHasEmailClaim(app.Services); // Kontrollera att admin har rätt e-post-claim
 }
 
-app.Run(); // Starta applikationen
+app.Run(); // Starta applikationen*/
+
+
+
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using Cybergames;
+using Cybergames.Data;
+using Cybergames.Models;
+
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddRazorPages(options =>
+{
+    options.Conventions.AuthorizeFolder("/Admin");
+});
+
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection"))
+);
+
+builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = false)
+    .AddEntityFrameworkStores<ApplicationDbContext>();
+
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("AdminOnly", policy =>
+        policy.RequireAssertion(context =>
+            context.User.Identity != null &&
+            context.User.Identity.IsAuthenticated &&
+            context.User.HasClaim(c =>
+                c.Type == System.Security.Claims.ClaimTypes.Email &&
+                c.Value == "admin@admin.com")));
+});
+
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(30);
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
+
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddSingleton<CartService>();
+builder.Services.AddScoped<GameService>();
+
+var app = builder.Build();
+
+if (!app.Environment.IsDevelopment())
+{
+    app.UseExceptionHandler("/Error");
+    app.UseHsts();
+}
+
+app.UseHttpsRedirection();
+app.UseStaticFiles();
+app.UseRouting();
+app.UseSession();
+app.UseAuthentication();
+app.UseAuthorization();
+app.MapRazorPages();
+
+using (var scope = app.Services.CreateScope())
+{
+    await AdminSetup.EnsureAdminUserHasEmailClaim(app.Services);
+}
+
+app.Run();
+

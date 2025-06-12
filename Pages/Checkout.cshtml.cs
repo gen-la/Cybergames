@@ -17,7 +17,9 @@ public class CheckoutModel : PageModel
     public bool ShowConfirmationMessage { get; set; } = false; // Indikerar om bekräftelsemeddelandet ska visas
 
     // Konstruktor som injicerar nödvändiga tjänster
+#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
     public CheckoutModel(
+#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
         CartService cartService,
         GameService gameService,
         UserManager<ApplicationUser> userManager)

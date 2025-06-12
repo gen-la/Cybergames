@@ -10,7 +10,9 @@ public class CartModel : PageModel
     public ShoppingCart Cart { get; set; }
 
     // Konstruktor för att injicera CartService
+#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
     public CartModel(CartService cartService)
+#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
     {
         _cartService = cartService;
     }
@@ -22,7 +24,9 @@ public class CartModel : PageModel
         ViewData["CartItemCount"] = Cart.Items.Sum(item => item.Quantity);
     }
 
+#pragma warning disable MVC1001 // Filters cannot be applied to page handler methods
     [Authorize] // Kräv inloggning för att lägga till spel i kundvagnen
+#pragma warning restore MVC1001 // Filters cannot be applied to page handler methods
     public IActionResult OnPostAddToCart(int id, string name, decimal price, int quantity)
     {
         var cart = _cartService.GetCart();
@@ -31,7 +35,9 @@ public class CartModel : PageModel
         return RedirectToPage(); // Omdirigerar tillbaka till samma sida
     }
 
+#pragma warning disable MVC1001 // Filters cannot be applied to page handler methods
     [Authorize] // Kräv inloggning för att ta bort spel från kundvagnen
+#pragma warning restore MVC1001 // Filters cannot be applied to page handler methods
     public IActionResult OnPostRemoveFromCart(int itemId)
     {
         var cart = _cartService.GetCart();

@@ -61,7 +61,9 @@ namespace Cybergames.Pages
         }
 
         // Funktion för att lägga till ett spel i kundvagnen
+#pragma warning disable MVC1001 // Filters cannot be applied to page handler methods
         [Authorize] // Endast inloggade användare kan lägga till spel i kundvagnen
+#pragma warning restore MVC1001 // Filters cannot be applied to page handler methods
         public IActionResult OnPostAddToCart(int id, string title, decimal price, int quantity)
         {
             var cart = _cartService.GetCart();

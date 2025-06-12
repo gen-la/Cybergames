@@ -14,7 +14,9 @@ namespace Cybergames.Pages
         public Game Game { get; set; } // Spelet som visas på detaljsidan
 
         // Konstruktor för att injicera ApplicationDbContext och CartService
+#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
         public GameDetailsModel(ApplicationDbContext context, CartService cartService)
+#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
         {
             _context = context;
             _cartService = cartService; // Injicerar CartService
@@ -29,7 +31,9 @@ namespace Cybergames.Pages
             }
 
             // Hämtar spelet med det angivna ID från databasen
+#pragma warning disable CS8601 // Possible null reference assignment.
             Game = await _context.Games.FirstOrDefaultAsync(g => g.ID == id);
+#pragma warning restore CS8601 // Possible null reference assignment.
 
             if (Game == null)
             {

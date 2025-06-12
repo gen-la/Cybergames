@@ -7,45 +7,49 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace Cybergames.Pages.Admin.Games
 {
-    //endast användare som uppfyller "AdminOnly"-policyn kan komma åt denna sida
+    //endast anvï¿½ndare som uppfyller "AdminOnly"-policyn kan komma ï¿½t denna sida
     [Authorize(Policy = "AdminOnly")]
     public class IndexModel : PageModel
     {
-        //variabel som innehåller databassammanhanget
+        //variabel som innehï¿½ller databassammanhanget
         private readonly ApplicationDbContext _context;
 
         //ta emot databassammanhanget via dependency injection
+#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
         public IndexModel(ApplicationDbContext context)
+#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
         {
             _context = context;
         }
 
-        //lista som kommer innehålla alla spel som ska visas på sidan
+        //lista som kommer innehï¿½lla alla spel som ska visas pï¿½ sidan
         public IList<Game> Games { get; set; } = default!;
 
-        //egenskap för att binda söksträngen från URL:en
-        //SupportsGet = true betyder att värdet kan komma från en GET-förfrågan (från URL:en)
+        //egenskap fï¿½r att binda sï¿½kstrï¿½ngen frï¿½n URL:en
+        //SupportsGet = true betyder att vï¿½rdet kan komma frï¿½n en GET-fï¿½rfrï¿½gan (frï¿½n URL:en)
         [BindProperty(SupportsGet = true)]
         public string searchString { get; set; }
 
         public async Task OnGetAsync(string searchString)
         {
-            //hämta alla spel från databasen
+            //hï¿½mta alla spel frï¿½n databasen
             var games = from g in _context.Games
                         select g;
 
-            //om en söksträng har angets, filtrera spelen baserat på titel eller kategori
+            //om en sï¿½kstrï¿½ng har angets, filtrera spelen baserat pï¿½ titel eller kategori
             if (!String.IsNullOrEmpty(searchString))
             {
+#pragma warning disable CS8602 // Dereference of a possibly null reference.
                 games = games.Where(s => s.Title.Contains(searchString) ||
                 s.Category.Contains(searchString));
+#pragma warning restore CS8602 // Dereference of a possibly null reference.
             }
 
-            //hämta spelen från databasen och lagra dem i Games
+            //hï¿½mta spelen frï¿½n databasen och lagra dem i Games
             Games = await games.ToListAsync();
         }
 
-        //kör när en POST-förfrågan för att ta bort ett spel skickas
+        //kï¿½r nï¿½r en POST-fï¿½rfrï¿½gan fï¿½r att ta bort ett spel skickas
         public async Task<IActionResult> OnPostDeleteAsync(int? id)
         {
             //om inget ID angavs, returnera ett 404-fel (Not Found)
@@ -57,14 +61,14 @@ namespace Cybergames.Pages.Admin.Games
             //hitta spelet med det angivna ID i databasen
             var game = await _context.Games.FindAsync(id);
 
-            //om spelet hittades, ta bort det från databasen
+            //om spelet hittades, ta bort det frï¿½n databasen
             if (game != null)
             {
                 _context.Games.Remove(game);
                 await _context.SaveChangesAsync();
             }
 
-            //omdirigera tillbaka till samma sida för att visa den uppdaterade listan
+            //omdirigera tillbaka till samma sida fï¿½r att visa den uppdaterade listan
             return RedirectToPage();
         }
     }

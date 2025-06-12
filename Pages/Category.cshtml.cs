@@ -16,7 +16,9 @@ namespace Cybergames.Pages
         private readonly CartService _cartService; // Tjänst för att hantera kundvagnen
 
         // Konstruktor för att injicera databaskontext och kundvagnstjänst
+#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
         public CategoryModel(ApplicationDbContext context, CartService cartService)
+#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
         {
             _context = context;
             _cartService = cartService;
@@ -43,7 +45,9 @@ namespace Cybergames.Pages
             return Page(); // Rendera sidan med de hämtade spelen
         }
 
+#pragma warning disable MVC1001 // Filters cannot be applied to page handler methods
         [Authorize] // Användaren måste vara inloggad för att lägga till spel i kundvagnen
+#pragma warning restore MVC1001 // Filters cannot be applied to page handler methods
         public IActionResult OnPostAddToCart(int id, string title, decimal price, int quantity, string category)
         {
             var cart = _cartService.GetCart();
