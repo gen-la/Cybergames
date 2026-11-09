@@ -1,6 +1,6 @@
 # 🎮 Cybergames
 
-**Cybergames** is a game webshop with a neon, retro-arcade look, built with **C# and ASP.NET Core (.NET 8)**. It was created as my degree project and covers the full flow of a web shop: browsing games, user accounts, a shopping cart, a (simulated) checkout, a personal game library and an admin area for managing the catalog. There is even a playable arcade game built into the site.
+**Cybergames** is a game webshop with a neon, retro-arcade look, built with **C# and ASP.NET Core (.NET 8)**. It was created as a degree project and covers the full flow of a web shop: browsing games, user accounts, a shopping cart, a (simulated) checkout, a personal game library and an admin area for managing the catalog. There is even a playable arcade game built into the site.
 
 
 ## ✨ Features
